@@ -334,6 +334,31 @@ body.lock{overflow:hidden}
 .rl-never{margin:18px 0 0;font-size:13px;color:var(--mute);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
 .rl-never .cap{color:var(--ink)}
 @media (max-width:760px){.rl{grid-template-columns:minmax(0,1fr)}.rl-list{grid-template-columns:minmax(0,1fr)}}
+
+/* clean calendar + ticker v2 */
+.ticker{grid-template-columns:repeat(3,minmax(0,1fr));border:0;background:transparent;gap:10px;margin:-6px 0 18px;overflow:visible}
+.tk{background:var(--paper);border:0;border-radius:12px;padding:12px 14px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.tk .v{font-size:24px}
+.wk{background:var(--paper);border-radius:18px;padding:14px 16px 12px;margin-bottom:26px;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+.wk-h{margin-bottom:6px;align-items:center}
+.wk .mtitle{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.wk .mtitle small{margin-left:6px}
+.wk-ctl .pill{padding:3px 10px;font-size:10px;border-color:var(--line);color:var(--mute)}
+.wk .mnav button{width:26px;height:26px;border-color:var(--line);color:var(--mute);font-size:13px}
+.days .day,.days.week .day{background:transparent!important;color:#B9B4AC;border:0!important;border-bottom:0!important;box-shadow:none!important;outline:0!important;transform:none!important;border-radius:12px;font-family:var(--f-sans)}
+.days.week{gap:4px}
+.days.week .day{height:70px;align-items:center;justify-content:center;gap:4px;padding:0}
+.days.week .dw{font-size:13px;letter-spacing:0;font-family:var(--f-sans)}
+.days.week .dn{font-family:var(--f-sans);font-size:20px;font-weight:500}
+.days .day.has{color:var(--ink);cursor:pointer}
+.days .day.has:hover{background:var(--panel)!important}
+.days .day.sel{background:#E6E3DD!important;color:var(--ink)}
+.days .day.today:not(.sel) .dn{text-decoration:underline;text-underline-offset:4px}
+.dot2{display:block;width:4px;height:4px;border-radius:50%;background:var(--orange)}
+.days.month{max-width:none}
+.days.month .day{aspect-ratio:auto;height:44px;align-items:center;justify-content:center;font-size:14px}
+.dbig{font-size:clamp(44px,6vw,72px)}
+.mast{padding-bottom:8px}
 </style>
 
 </head>
@@ -492,9 +517,8 @@ var index=[],dates={},view=null,cur=null,full=false,data=null;
       document.getElementById('mtitle').replaceChildren(document.createTextNode((m+1)+'月'),el('small',null,String(y)));}
     box.className='days '+mode;
     list.forEach(function(dt){if(!dt){box.append(el('span','day blank'));return}var ds=fmt(dt),has=!!dates[ds];
-      var c=el(has?'button':'span','day'+(has?' has':'')+(ds===td?' today':'')+(cur===ds?' sel':''));c.append(el('span','dn',String(dt.getUTCDate())));
-      if(mode==='week'){c.append(el('span','dw',WK[dt.getUTCDay()]));var x=index.find(function(q){return q.date===ds});c.append(el('span','dh',x?(x.count+' 条'):(ds>td?'':'—')))}
-      if(has){var p=pal(ds);c.style.setProperty('--c',p[0]);c.style.setProperty('--t',p[1]);c.type='button';c.setAttribute('aria-label',ds+' 早报');c.addEventListener('click',function(){go(ds,true)})}
+      var c=el(has?'button':'span','day'+(has?' has':'')+(ds===td?' today':'')+(cur===ds?' sel':''));if(mode==='week')c.append(el('span','dw',WK[dt.getUTCDay()].charAt(0)+WK[dt.getUTCDay()].slice(1,3).toLowerCase()));c.append(el('span','dn',String(dt.getUTCDate())));if(has)c.append(el('i','dot2'));
+      if(has){c.type='button';c.setAttribute('aria-label',ds+' 早报');c.addEventListener('click',function(){go(ds,true)})}
       box.append(c)});
     document.getElementById('mode').textContent=mode==='week'?'月历':'本周';document.getElementById('mode').setAttribute('aria-pressed',mode==='month'?'true':'false');
   }
@@ -552,9 +576,9 @@ var index=[],dates={},view=null,cur=null,full=false,data=null;
     a.append(spark(pts.map(function(q){return q.value}),col));return a}
   Promise.all([fetch('revenue.json',{cache:'no-cache'}).then(function(r){return r.json()}),fetch('pulse.json',{cache:'no-cache'}).then(function(r){return r.json()})]).then(function(x){
     var S={},M={};x[0].series.forEach(function(s){S[s.id]=s.points});x[1].metrics.forEach(function(m){M[m.id]=m.points||[]});
-    var h=el('div','tk-h');h.append(el('span',null,'AI Pulse'),el('b',null,'温度计'));box.replaceChildren(h,
+    var tiles=[
       tile('ANTHROPIC 年化营收',S.anthropic||[],'$','B','#E8642C'),tile('OPENAI 年化营收',S.openai||[],'$','B','#2F55B5'),
-      tile('OPENROUTER 周 TOKENS',M.openrouter||[],'','T','#2E5A3F'),tile('NVIDIA 市值',M.nvda||[],'$','T','#141110'),tile('云厂商 CAPEX/季',M.capex||[],'$','B','#9B6FC0'));
+      tile('OPENROUTER 周 TOKENS',M.openrouter||[],'','T','#2E5A3F'),tile('NVIDIA 市值',M.nvda||[],'$','T','#141110'),tile('云厂商 CAPEX/季',M.capex||[],'$','B','#9B6FC0')].filter(function(t){return t.href});box.style.gridTemplateColumns='repeat('+tiles.length+',minmax(0,1fr))';box.replaceChildren.apply(box,tiles);
   }).catch(function(){box.hidden=true});
 })();
 </script>
