@@ -39,7 +39,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cobalt);outline-off
 .bar nav{display:flex;gap:6px}
 .pill{font:inherit;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:999px;padding:5px 14px;cursor:pointer;line-height:1.2}
 .pill[aria-pressed="true"],.pill.on{background:var(--ink);color:var(--panel)}
-@media (max-width:700px){.bar .mid{display:none} .bar nav .pill:not(:first-child){display:none}}
+@media (max-width:700px){.bar .mid{display:none} .bar nav .pill:not(:first-child):not(:nth-child(2)){display:none}}
 
 /* hero + shelf */
 .hero{text-align:center;padding:clamp(28px,6vw,64px) clamp(16px,3vw,32px) 0}
@@ -165,7 +165,7 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   <header class="bar">
     <span class="cap">Frontier · Siabuilt</span>
     <span class="cap mid">Part I</span>
-    <nav aria-label="章节"><a class="pill on" href="#shelf-top" data-s="top">Shelf</a><a class="pill" href="#builders" data-s="builders">Builders</a><a class="pill" href="#rules" data-s="rules">Rules</a></nav>
+    <nav aria-label="章节"><a class="pill" href="./daily.html" style="background:var(--orange);border-color:var(--orange);color:#1B120D">Daily ↗</a><a class="pill on" href="#shelf-top" data-s="top">Shelf</a><a class="pill" href="#builders" data-s="builders">Builders</a><a class="pill" href="#rules" data-s="rules">Rules</a></nav>
   </header>
 
   <div id="shelf-top" data-idx="01">

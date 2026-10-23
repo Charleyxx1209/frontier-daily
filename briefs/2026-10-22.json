@@ -1,0 +1,180 @@
+{
+ "date": "2026-10-22",
+ "generatedAt": "2026-10-21T23:58:00Z",
+ "headline": "Agent 正从“单个助手”变成“可调度的劳动力”：千个 agent 并行做科研、agent 挖出的漏洞倒逼全行业协同披露，而 OpenAI 一边跨云分发模型、一边把广告做成十亿美元生意——分发与变现的基建在和能力同步成型",
+ "questions": [
+  "OpenAI 用数千个 agent 并行加汇总的方式做科研分析。在你负责的产品里，有没有一个用户任务可以拆成上百个独立单元并行处理？拆完之后，汇总层要怎么设计，才能让用户信任结果？",
+  "Claude Mods 作者的“下一步建议”111 轮触发了 99 次，最后被当成噪音。如果你的 agent 要主动提醒用户，你会用什么指标决定何时打断（例如“发现了用户会漏掉的风险”）？目标触发率设多少？",
+  "OpenAI 模型进入 Google Cloud、DeepSeek 开源推理栈拉低成本，同时美国限制 DeepSeek 参与联邦采购。如果明年你的产品需要在 30 天内换掉主力模型，现在的架构和评测体系能做到吗？最大的卡点在哪？"
+ ],
+ "sections": [
+  {
+   "id": "x",
+   "items": [
+    {
+     "id": "thsottiaux-usage-bug",
+     "quote": "Sorry we got this wrong.",
+     "quoteZh": "抱歉，这件事我们做错了。",
+     "soWhat": "按用量计费的 agent 产品里，“额度扣得对不对”本身就是信任底线。值得把额度计算做成可审计、可对账的独立系统，并准备好主动披露加补偿的标准流程。",
+     "sourceLabel": "X",
+     "summary": "周末有用户反映额度消耗异常快。排查发现约 4 万个账户实际执行的用量限制与所选套餐不一致，团队已修复，并逐一联系受影响用户补发 credits。这条帖子获得了一万多点赞，远超他平时的产品更新。",
+     "tag": "计费事故",
+     "title": "约 4 万个账户的用量额度按错了套餐计算，OpenAI 公开认错并补发额度",
+     "url": "https://x.com/thsottiaux/status/2112592264686149749",
+     "who": "Thibault Sottiaux（OpenAI Codex & ChatGPT）"
+    },
+    {
+     "id": "woodward-trusted-tester",
+     "quote": "Lots of people want to try early stuff on Web, Android, and iOS!",
+     "quoteZh": "很多人想在 Web、Android 和 iOS 上抢先试用新东西！",
+     "soWhat": "大厂把早期测试者社区当成持续的灰度与反馈渠道。可以参考：按平台分层的 tester 池，配合固定节奏的功能放量，比临时招募更快拿到真实信号。",
+     "sourceLabel": "X",
+     "summary": "Woodward 表示想提前试用新功能的人很多，之前报名过的用户已全部入组，并重新开放报名。Google 正在把“抢先体验”做成跨端的常设社区，而不是单次内测。",
+     "tag": "早期用户",
+     "title": "Gemini App 的 Trusted Tester 社区跨过一个大里程碑，覆盖 Web、Android、iOS",
+     "url": "https://x.com/joshwoodward/status/2112676777290248675",
+     "who": "Josh Woodward（Google VP，Labs / Gemini App）"
+    },
+    {
+     "id": "shipper-approval-deadlock",
+     "quote": "the approval policy is never so it can't ask for approval!",
+     "quoteZh": "审批策略是“从不”，所以它根本没法请求批准！",
+     "soWhat": "权限模式之间的边界状态很容易被漏测。agent 遇到权限阻塞时，至少要能告诉用户卡在哪、在哪里改设置。这类体验设计应该作为验收项检查。",
+     "sourceLabel": "X",
+     "summary": "Shipper 吐槽一个 agent 的自相矛盾：任务需要用户批准，可审批策略是 never，所以它没法请求批准；而且 agent 自己也不知道用户该怎么改这个策略。帖子未说明是哪款产品。",
+     "tag": "权限设计",
+     "title": "agent 需要审批才能继续，但审批策略设成了“从不询问”，结果卡死",
+     "url": "https://x.com/danshipper/status/2112550542837002419",
+     "who": "Dan Shipper（Every CEO）"
+    }
+   ],
+   "title": "Builders 在说什么"
+  },
+  {
+   "id": "pod",
+   "items": [
+    {
+     "id": "simon-battle-drones",
+     "quote": "I know almost nothing about game development.",
+     "quoteZh": "我对游戏开发几乎一无所知。",
+     "soWhat": "这是“非专家 + agent + 自动化仿真评测”的完整样本：让 agent 自己跑大量模拟来提供反馈，比人工审代码更能撑起质量。做 agent 产品时可以把“内置仿真/自测回路”当作一等功能。",
+     "sourceLabel": "博客",
+     "summary": "Simon 从 7 月起主要用 Claude Code 做了一款叫 Battle Drones 的浏览器即时战略游戏，TypeScript 代码他几乎没审，但自己大量试玩。大改动（3D 移植、“好玩度”重做）通常让 agent 通宵跑。一句“Make it a LOT more fun”的提示带来了 v4 大改；agent 还跑了 1200 局 AI 对战来调平衡，25 分钟仍未分胜负的对局从 14% 降到 0.9%。他也坦言，在自己不懂的领域靠 agent 做出作品，会有“没真正挣来”的不安。",
+     "tag": "实践复盘",
+     "title": "几乎不看代码，用 coding agent 做出一款浏览器 RTS：12 个大版本、321 次提交",
+     "url": "https://simonwillison.net/2026/Oct/20/battledrones/",
+     "who": "Simon Willison"
+    },
+    {
+     "id": "latent-claude-mods",
+     "quote": "Claude Mods are middleware for the agent harness.",
+     "quoteZh": "Claude Mods 是 agent harness 的中间件。",
+     "soWhat": "“让用户定义 agent 何时打扰自己”可能是下一个差异化点。但作者的数据也提醒：主动提示的触发率一高就会被当噪音忽略，设计时要用“是否帮我发现了会漏掉的东西”来衡量。",
+     "sourceLabel": "Newsletter",
+     "summary": "作者认为，随着模型吸收越来越多的 harness 功能，剩下的部分会转向人：决定 agent 何时打断你、给你看什么、要你做哪些决定。Claude Mods 是 Claude Code 的 TS/JS 插件，可挂在 prompt、工具调用、渲染等事件上，Anthropic 自带 6 个。他写的“下一步建议”mod 在 111 轮里触发了 99 次，他自己都开始略读；每次检查还要多花约 5-6k token，且 mod 不在沙箱里运行。",
+     "tag": "交互范式",
+     "title": "Claude Mods：把 agent harness 翻过来，做面向人的“注意力界面”",
+     "url": "https://www.latent.space/p/claude-mods",
+     "who": "Dan McAteer（Latent Space 撰稿）"
+    },
+    {
+     "id": "interconnects-open-25",
+     "quote": "This is notable in times where licenses seem to become more bespoke and exclusionary.",
+     "quoteZh": "在许可证越来越定制化、越来越排他的当下，这一点很值得注意。",
+     "soWhat": "推理栈开源会把行业的推理成本下限往下拉，做模型选型和定价时要预期 token 价格继续下降。同时监管正在给“用哪家模型”加上合规维度，面向政企的产品需要提前准备可替换的模型方案。",
+     "sourceLabel": "Newsletter",
+     "summary": "中国商务部发布征求意见稿，拟要求前沿模型对外共享前须经审批（开源技术可自动获批）；美国国土安全部则禁止 DeepSeek 公司及其模型成为联邦民用采购供应商。DeepSeek 开源内部推理栈 DeepInfer，外部估算其卖 token 毛利可达 90%；新的 V4.1-Flash-1017 为 552B-A16B、支持图像输入、MIT 许可。美国侧则有 Reflection 的 Beam-1.0（Apache 2.0）、NVIDIA Nemotron 3.5 和 Meta 的开放版 Muse 等。",
+     "tag": "开源格局",
+     "title": "开源模型月报：DeepSeek 开源推理栈，中美同时收紧对开源权重的管控",
+     "url": "https://www.interconnects.ai/p/latest-open-artifacts-25-deepseek",
+     "who": "Florian Brand、Nathan Lambert（Interconnects）"
+    },
+    {
+     "id": "importai-477-imf",
+     "quote": "The singularity is here.",
+     "quoteZh": "奇点已经到来。",
+     "soWhat": "当前沿实验室负责人在国际金融机构面前这样表态，企业客户对“AI 带来多大改变”的预期会被抬高。产品叙事要准备好可量化的生产率证据，而不只是功能列表。",
+     "sourceLabel": "Newsletter",
+     "summary": "这期是他 10 月 17 日在曼谷 IMF 会议上的演讲全文（10-19 发布，上期未收录）。他用基准曲线论证 AI 已能做前沿研究：Humanity's Last Exam 最高分从约 8% 升到 67.7%，FrontierMath 从约 2% 升到 94%；Anthropic 研究员的代码产出接近公司前四年的 10 倍。他呼吁投资机器人和实验室自动化（可能成为新瓶颈），并对生物、网络滥用和“AI 做 AI 研究”建立治理。",
+     "tag": "宏观判断",
+     "title": "Jack Clark 在 IMF 演讲：奇点已经开始，政府和机构要提前准备",
+     "url": "https://importai.substack.com/p/import-ai-477-in-which-i-tell-the",
+     "who": "Jack Clark（Import AI）"
+    }
+   ],
+   "title": "一手长文与播客"
+  },
+  {
+   "id": "industry",
+   "items": [
+    {
+     "id": "openai-google-cloud",
+     "quote": "",
+     "quoteZh": "",
+     "soWhat": "模型正在变成多渠道分发的商品，企业采购可以直接走现有云预算。做上层应用的团队更没理由绑定单一模型，多模型路由和按场景选型会成为默认配置。",
+     "sourceLabel": "OpenAI",
+     "summary": "Google Cloud 客户可以通过 Marketplace 购买 OpenAI 模型，并用已有的 GCP 消费承诺抵扣。OpenAI 模型也将进入 Google Antigravity 和 Gemini Agent，计划未来几周全面可用。公告同时强调 Microsoft 仍是 OpenAI 的首要云合作伙伴。",
+     "tag": "分发渠道",
+     "title": "OpenAI 前沿模型和 Codex 将上架 Google Cloud Model Garden",
+     "url": "https://openai.com/index/openai-models-google-cloud",
+     "who": "OpenAI"
+    },
+    {
+     "id": "openai-patch-the-planet",
+     "quote": "",
+     "quoteZh": "",
+     "soWhat": "agent 找漏洞的速度在改变安全节奏：补丁窗口会越来越短。任何依赖开源组件的产品都要缩短升级周期，AI 安全扫描也可能从加分项变成采购门槛。",
+     "sourceLabel": "OpenAI",
+     "summary": "其中一个漏洞由 Calif 借助 GPT-5.6 Sol 发现，Wiz 独立发现并报告了两个，PHP 维护者主导修复发布，Cloudflare 及 CISA 等美国机构参与协调。OpenAI 称这只是已发现的若干重大漏洞之一，预计此类发现会急剧增加，并承诺提供 10 亿美元的 Daybreak 补贴额度给资源不足的防御方，还提出了五阶段协同披露流程。",
+     "tag": "AI 安全",
+     "title": "AI 发现 PHP 两个严重漏洞，OpenAI 牵头“Patch the Planet”协同披露",
+     "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+     "who": "OpenAI"
+    },
+    {
+     "id": "openai-agents-biology",
+     "quote": "",
+     "quoteZh": "",
+     "soWhat": "“一个任务拆给一千个 agent、再汇总”的模式已有可复用的实证。对于数据量大、单元可并行的分析类产品（投研、审计、尽调），可以把并行 agent 加汇总层当作核心架构来设计。",
+     "sourceLabel": "OpenAI",
+     "summary": "每个 GPT-Rosalind agent 负责一个基因扰动，查看细胞反应和文献后提出解释，结果汇总成一张“推理图谱”；研究者估计人工需要数月到一年。agent 复现了人工分析的结论，提出了 Tsc1/Tsc2 小脑效应差异等新线索。最大规模下共引用 700 多篇文献（单 agent 仅 11 篇），盲评中专家 75% 的情况更偏好 agent 集群的报告。",
+     "tag": "agent 科研",
+     "title": "数千个 agent 并行，32 分钟分析完覆盖数百万细胞的小鼠全脑 CRISPR 图谱",
+     "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
+     "who": "OpenAI、PerturbAI、Scripps Research"
+    },
+    {
+     "id": "openai-ads-stack",
+     "quote": "The system only delivers an ad if it's clearly beneficial to users and advertisers.",
+     "quoteZh": "只有在对用户和广告主都明显有益时，系统才会投放广告。",
+     "soWhat": "对话式广告已被验证可规模化，而且架构上的关键是“广告与回答物理隔离”。做 AI 产品变现时，可以把这套隔离原则直接拿来当作用户信任设计的底线。",
+     "sourceLabel": "OpenAI",
+     "summary": "OpenAI 工程博客介绍了广告系统设计：广告选择跑在独立的服务、模型和代码里，不影响正常回答，广告系统变慢也不会拖慢回复；个性化只用用户主动同意的非敏感对话信息；一个经过后训练的编排 LLM 把对话改写为检索查询，再经过资格筛选、相关性打分和竞价。同日官方宣布广告新增 26 国、总计 89 国，累计超过 10 万广告主，并开放自助投放。",
+     "tag": "商业化",
+     "title": "ChatGPT 广告上线不到 200 天年化收入破 10 亿美元，并扩展到 89 个国家",
+     "url": "https://openai.com/index/building-chatgpt-ad-stack",
+     "who": "OpenAI"
+    },
+    {
+     "id": "nvidia-dsx-pod",
+     "quote": "",
+     "quoteZh": "",
+     "soWhat": "算力上线速度如果从“按季度”变成“按周”，供给瓶颈会更多转向电力和选址。对依赖算力的产品来说，2027 年的容量和价格预期可以偏乐观一些。",
+     "sourceLabel": "DatacenterDynamics",
+     "summary": "DSX POD 是 Vera Rubin 参考架构的模块化版本，出厂前完成集成和验证，接上场地的电力、冷却和网络即可运行。NVIDIA 称 DSX 平台的冷却方案最多可省 100% 用水，同等算力最多省 30% 电力；与 Anduril、Dell、HPE、Schneider Electric、Vertiv 等合作，计划 2027 年初交付。（媒体报道，未找到官方原文）",
+     "tag": "算力基建",
+     "title": "NVIDIA 推出集装箱化的 Vera Rubin 数据中心 DSX POD，部署时间从 6 个月降到 14 天",
+     "url": "https://www.datacenterdynamics.com/en/news/nvidia-launches-dsx-pod-claims-the-vera-rubin-reference-architecture-will-make-ai-data-centers-more-water-and-energy-efficient/",
+     "who": "NVIDIA"
+    }
+   ],
+   "title": "典型事实"
+  }
+ ],
+ "stats": "X：3 位 builder · 3 条（中心 feed 仍停在 10-21 06:43Z，与上期重叠，已去重） ｜ 一手长文：Simon Willison、Latent Space（Claude Mods）、Interconnects、Import AI ｜ 播客：无新集（All-In/BG2/Acquired 未检索到新集，Lenny/Dwarkesh 无新内容） ｜ 事实新闻：5 条（OpenAI 官方公告 4、媒体 1） ｜ 失败的源：无；Mollick、Hamel、Eugene Yan、SemiAnalysis、Lenny、Dwarkesh 无窗口内新文",
+ "themes": [
+  "并行化成为新的能力杠杆：OpenAI 用数千个 agent 半小时扫完全脑 CRISPR 图谱，Simon 让 agent 跑上千局自对弈来调平衡，“多开”比“更强单体”更早落地",
+  "人机界面层被重新发明：Claude Mods 把 harness 翻过来面向人，Dan Shipper 撞上“审批策略为 never 却要审批”的死循环——注意力与权限设计成了 agent 产品的核心体验",
+  "前沿模型走向渠道化与平台化：OpenAI 进入 Google Cloud Model Garden、ChatGPT 广告覆盖 89 国，DeepSeek 开源推理栈抬高行业毛利上限，竞争从模型本身扩展到分发和单位经济"
+ ]
+}

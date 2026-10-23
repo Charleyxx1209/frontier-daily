@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Frontier 早报 · Daily</title>
+<meta name="description" content="Frontier 早报每日一期：一线 builder、一手长文与典型事实，按日历查看。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Oswald:wght@500;700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap">
+<style>
+/* Layout: the same walnut frame + pale panel as the source index. Left: a month calendar where each issue day is a coloured "spine" tile; right: the issue itself, read like a printed edition. */
+:root{
+  --frame:#2A1F1A; --frame-ink:#CDBFB3; --panel:#ECEAE5; --paper:#F7F5F1; --ink:#141110; --mute:#6E6862; --line:#CFCBC4;
+  --orange:#E8642C; --pink:#F2A7C3; --navy:#1F2A55; --red:#D9373B; --cobalt:#2F55B5; --mustard:#E9B23A; --forest:#2E5A3F; --lilac:#C9A6E0; --wine:#3E1E22;
+  --f-display:"Bodoni Moda","Noto Serif SC",Didot,serif;
+  --f-zhserif:"Noto Serif SC","Songti SC",serif;
+  --f-cond:"Oswald","Arial Narrow",sans-serif;
+  --f-sans:"Geist","Noto Sans SC","PingFang SC",Arial,sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--frame);scroll-behavior:smooth}
+body{margin:0;background:var(--frame);color:var(--ink);font-family:var(--f-sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  padding-left:max(clamp(10px,4vw,56px),env(safe-area-inset-left,0px));padding-right:max(clamp(10px,4vw,56px),env(safe-area-inset-right,0px));padding-block:clamp(10px,4vw,56px)}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+.cap{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase}
+.panel{max-width:1240px;margin:0 auto;background:var(--panel);box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px clamp(16px,3vw,32px);border-bottom:1px solid var(--line)}
+.bar nav{display:flex;gap:6px}
+.pill{font:inherit;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:transparent;border:1px solid var(--ink);border-radius:999px;padding:5px 14px;cursor:pointer;line-height:1.2}
+.pill.on,.pill[aria-pressed="true"]{background:var(--ink);color:var(--panel)}
+
+.wrap{display:grid;grid-template-columns:320px minmax(0,1fr);align-items:start}
+aside{position:sticky;top:0;padding:28px clamp(16px,2.4vw,28px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:22px}
+.mhead{display:flex;justify-content:space-between;align-items:baseline}
+.mtitle{font-family:var(--f-display);font-size:34px;line-height:1}
+.mtitle small{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;margin-left:8px;color:var(--mute)}
+.mnav{display:flex;gap:4px}
+.mnav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--ink);background:none;cursor:pointer;font-size:14px;line-height:1}
+.mnav button:disabled{opacity:.25;cursor:default}
+.dow,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.dow span{text-align:center;color:var(--mute)}
+.day{aspect-ratio:1/1.35;border-radius:3px 3px 0 0;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 0 4px;font-family:var(--f-mono);font-size:11px;color:var(--mute);border-bottom:2px solid var(--line)}
+.day.has{background:var(--c);color:var(--t);border-bottom-color:var(--ink);cursor:pointer;box-shadow:inset -2px 0 0 rgba(0,0,0,.12);transition:transform .2s cubic-bezier(.2,.7,.2,1)}
+.day.has:hover{transform:translateY(-5px)}
+.day.has i{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.8}
+.day.sel{transform:translateY(-8px);outline:2px solid var(--ink);outline-offset:2px}
+.day.today:not(.has){border:1px dashed var(--ink);color:var(--ink)}
+.day.blank{visibility:hidden}
+.legend{color:var(--mute);font-size:13px;line-height:1.55}
+.recent{display:flex;flex-direction:column;border-top:1px solid var(--ink)}
+.recent a{display:grid;grid-template-columns:46px minmax(0,1fr);gap:10px;padding-block:10px;border-bottom:1px solid var(--line)}
+.recent a:hover .rh{text-decoration:underline;text-underline-offset:3px}
+.recent a.on{background:var(--paper)}
+.rd{font-family:var(--f-display);font-size:22px;line-height:1}
+.rd small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--mute);margin-top:4px}
+.rh{font-size:13px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+main{padding:clamp(24px,4vw,56px) clamp(16px,4vw,56px) 56px;min-width:0}
+.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:14px}
+.big{font-family:var(--f-display);font-size:clamp(64px,10vw,128px);line-height:.85;letter-spacing:-.02em}
+.big em{font-style:italic;font-size:.45em;letter-spacing:0;margin-left:10px;vertical-align:.9em}
+.ed{text-align:right;color:var(--mute)}
+.ed b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;color:var(--ink);letter-spacing:0;text-transform:none}
+.headline{font-family:var(--f-zhserif);font-weight:700;font-size:clamp(22px,2.6vw,32px);line-height:1.45;margin:28px 0 0;text-wrap:balance;max-width:34em}
+.themes{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.themes li{background:var(--paper);border-radius:6px;padding:14px 16px;border-top:6px solid var(--c);font-size:14px;line-height:1.6}
+.themes li b{display:block;font-family:var(--f-display);font-size:26px;font-weight:400;line-height:1;margin-bottom:6px}
+.stats{margin-top:14px;color:var(--mute);font-size:12px;line-height:1.6}
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.jump a{display:inline-flex;gap:8px;align-items:center;border-radius:999px;padding:6px 14px;color:var(--t);background:var(--c);font-size:13px;font-weight:500}
+.jump a span{font-family:var(--f-mono);font-size:11px;opacity:.8}
+
+section.sec{margin-top:52px}
+.sh{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:18px}
+.sh .no{font-family:var(--f-display);font-size:44px;line-height:.8;color:var(--c)}
+.sh h2{font-family:var(--f-zhserif);font-weight:700;font-size:24px;margin:0}
+.sh .n{margin-left:auto;color:var(--mute)}
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.item{background:var(--paper);border-radius:6px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;position:relative}
+.item.wide{grid-column:1/-1}
+.who{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--mute)}
+.who b{color:var(--ink);font-weight:600;font-size:13px}
+.tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;padding:1px 8px;border-radius:999px;background:var(--c);color:var(--t)}
+.item h3{font-family:var(--f-zhserif);font-weight:700;font-size:18px;line-height:1.5;margin:0;text-wrap:pretty}
+.item p{margin:0;font-size:14px}
+.q{border-left:3px solid var(--c);padding:4px 0 4px 12px}
+.q .en{font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.4;display:block}
+.q .zh{font-size:13px;color:var(--mute)}
+.sw{font-size:14px;background:var(--panel);border-radius:4px;padding:8px 12px}
+.sw::before{content:"SO WHAT";font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--orange);margin-right:8px}
+.src{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid currentColor;margin-top:auto}
+.src:hover{color:var(--cobalt)}
+.qs{margin-top:52px;background:var(--ink);color:var(--panel);border-radius:6px;padding:24px clamp(18px,3vw,32px)}
+.qs h2{font-family:var(--f-zhserif);font-size:22px;margin:0 0 12px}
+.qs ol{margin:0;padding-left:1.4em;display:grid;gap:10px}
+.qs .cap{color:var(--mustard)}
+.state{padding:80px 0;text-align:center;color:var(--mute)}
+.state b{display:block;font-family:var(--f-display);font-weight:400;font-size:40px;color:var(--ink);margin-bottom:8px}
+footer.pf{border-top:1px solid var(--line);padding:16px clamp(16px,3vw,32px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute)}
+footer.pf a{text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:960px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  aside{position:static;border-right:0;border-bottom:1px solid var(--line)}
+  .recent{display:none}
+  .items{grid-template-columns:minmax(0,1fr)}
+  .themes{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){.ed{text-align:left}.bar .brand{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="panel">
+  <header class="bar">
+    <a class="cap brand" href="./">Frontier · Siabuilt</a>
+    <nav><a class="pill on" href="./daily.html">Daily</a><a class="pill" href="./">Sources</a></nav>
+  </header>
+  <div class="wrap">
+    <aside>
+      <div class="mhead">
+        <div class="mtitle" id="mtitle">—</div>
+        <div class="mnav"><button type="button" id="prev" aria-label="上个月">‹</button><button type="button" id="next" aria-label="下个月">›</button></div>
+      </div>
+      <div>
+        <div class="dow cap"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+        <div class="days" id="days" style="margin-top:8px"></div>
+      </div>
+      <p class="legend">有颜色的书脊是出过刊的日子，点一下就能翻到那一期。每天北京时间 07:41 更新。</p>
+      <div class="recent" id="recent"></div>
+    </aside>
+    <main id="main"><div class="state"><b>Loading</b>正在取出这一期</div></main>
+  </div>
+  <footer class="pf cap">
+    <span>Maintained by Sia · Compiled daily with Claude</span>
+    <span><a href="./">信源索引</a> · Core list via <a href="https://github.com/zarazhangrui/follow-builders" target="_blank" rel="noopener">follow-builders</a></span>
+  </footer>
+</div>
+<script>
+(function(){
+  var PAL=[["#E8642C","#1B120D"],["#2F55B5","#fff"],["#F2A7C3","#1B120D"],["#1F2A55","#F3EFE6"],["#E9B23A","#2A1D16"],["#D9373B","#FFF3EA"],["#2E5A3F","#F1EBDD"],["#C9A6E0","#1B120D"],["#3E1E22","#E9B23A"]];
+  var SEC={x:["#E8642C","#1B120D"],pod:["#2F55B5","#fff"],industry:["#2E5A3F","#F1EBDD"]};
+  var WK=["SUN","MON","TUE","WED","THU","FRI","SAT"];
+  var index=[], dates={}, view=null, cur=null;
+  function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+  function pal(ds){var n=0;for(var i=0;i<ds.length;i++)n+=ds.charCodeAt(i)*(i+1);return PAL[n%PAL.length]}
+  function today(){var d=new Date(Date.now()+8*3600e3);return d.toISOString().slice(0,10)}
+  function parse(ds){var p=ds.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2]))}
+  function safeUrl(u){return /^https?:\/\//.test(u||'')?u:null}
+
+  function renderCal(){
+    var y=view.y,m=view.m, first=new Date(Date.UTC(y,m,1)), n=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+    var mt=document.getElementById('mtitle'); mt.replaceChildren(document.createTextNode(String(m+1).padStart(2,'0')), el('small',null,String(y)));
+    var box=document.getElementById('days'); box.replaceChildren();
+    var lead=(first.getUTCDay()+6)%7, td=today();
+    for(var i=0;i<lead;i++) box.append(el('span','day blank'));
+    for(var d=1;d<=n;d++){
+      var ds=y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      var has=!!dates[ds], c=el(has?'button':'span','day'+(has?' has':'')+(ds===td?' today':'')+(cur===ds?' sel':''));
+      c.append(el('span',null,String(d)));
+      if(has){var p=pal(ds);c.style.setProperty('--c',p[0]);c.style.setProperty('--t',p[1]);c.type='button';c.setAttribute('aria-label',ds+' 早报');c.append(el('i'));
+        (function(ds){c.addEventListener('click',function(){go(ds)})})(ds);}
+      box.append(c);
+    }
+    var ms=index.map(function(x){return x.date.slice(0,7)}), key=y+'-'+String(m+1).padStart(2,'0');
+    var min=ms[ms.length-1], max=ms[0];
+    document.getElementById('prev').disabled=!min||key<=min;
+    document.getElementById('next').disabled=!max||key>=max;
+  }
+  function renderRecent(){
+    var r=document.getElementById('recent'); r.replaceChildren();
+    index.slice(0,8).forEach(function(x){
+      var a=el('a',x.date===cur?'on':''); a.href='#'+x.date;
+      var d=parse(x.date), dd=el('div','rd',String(d.getUTCMonth()+1)+'.'+String(d.getUTCDate()).padStart(2,'0'));
+      dd.append(el('small',null,WK[d.getUTCDay()]));
+      a.append(dd, el('div','rh',x.headline||''));
+      a.addEventListener('click',function(e){e.preventDefault();go(x.date)});
+      r.append(a);
+    });
+  }
+  function item(it,sid){
+    var a=el('article','item'), p=SEC[sid]||PAL[0];
+    a.style.setProperty('--c',p[0]); a.style.setProperty('--t',p[1]);
+    var w=el('div','who'); w.append(el('b',null,it.who||'')); if(it.tag) w.append(el('span','tag',it.tag)); a.append(w);
+    if(it.title) a.append(el('h3',null,it.title));
+    if(it.summary) a.append(el('p',null,it.summary));
+    if(it.quote||it.quoteZh){var q=el('div','q'); if(it.quote) q.append(el('span','en','“'+it.quote+'”')); if(it.quoteZh) q.append(el('span','zh',it.quoteZh)); a.append(q)}
+    if(it.soWhat) a.append(el('p','sw',it.soWhat));
+    var u=safeUrl(it.url); if(u){var l=el('a','src',(it.sourceLabel||'原文')+' ↗'); l.href=u; l.target='_blank'; l.rel='noopener'; a.append(l)}
+    return a;
+  }
+  function renderIssue(d){
+    var m=document.getElementById('main'); m.replaceChildren();
+    var dt=parse(d.date), mast=el('div','mast'), big=el('div','big',String(dt.getUTCMonth()+1)+'.'+String(dt.getUTCDate()).padStart(2,'0'));
+    big.append(el('em',null,WK[dt.getUTCDay()].charAt(0)+WK[dt.getUTCDay()].slice(1).toLowerCase()));
+    var no=index.length-index.findIndex(function(x){return x.date===d.date});
+    var ed=el('div','ed cap'); ed.append(el('b',null,'No. '+String(no).padStart(3,'0')), document.createTextNode('Frontier Daily · '+dt.getUTCFullYear()));
+    mast.append(big,ed); m.append(mast);
+    m.append(el('h1','headline',d.headline||''));
+    if(d.themes&&d.themes.length){var ul=el('ol','themes'); d.themes.forEach(function(t,i){var li=el('li'); li.style.setProperty('--c',[ '#E8642C','#2F55B5','#2E5A3F'][i%3]); li.append(el('b',null,String(i+1).padStart(2,'0')), document.createTextNode(t)); ul.append(li)}); m.append(ul)}
+    var j=el('div','jump');
+    (d.sections||[]).forEach(function(s,i){var p=SEC[s.id]||PAL[i]; var a=el('a'); a.href='#sec-'+(s.id||i); a.style.setProperty('--c',p[0]); a.style.setProperty('--t',p[1]); a.append(document.createTextNode(s.title), el('span',null,String((s.items||[]).length))); j.append(a)});
+    m.append(j);
+    if(d.stats) m.append(el('p','stats',d.stats));
+    (d.sections||[]).forEach(function(s,i){
+      var p=SEC[s.id]||PAL[i], sec=el('section','sec'); sec.id='sec-'+(s.id||i); sec.style.setProperty('--c',p[0]);
+      var sh=el('div','sh'); sh.append(el('span','no',String(i+1).padStart(2,'0')), el('h2',null,s.title), el('span','n cap',(s.items||[]).length+' items')); sec.append(sh);
+      var g=el('div','items'); (s.items||[]).forEach(function(it){g.append(item(it,s.id))});
+      if((s.items||[]).length%2===1 && g.lastChild) g.lastChild.classList.add('wide');
+      sec.append(g); m.append(sec);
+    });
+    if(d.questions&&d.questions.length){var qs=el('div','qs'); qs.append(el('div','cap','For Sia · 今日三问'), el('h2',null,'留给自己的问题')); var ol=el('ol'); d.questions.forEach(function(q){ol.append(el('li',null,q))}); qs.append(ol); m.append(qs)}
+  }
+  function go(ds,noScroll){
+    cur=ds; var dt=parse(ds); view={y:dt.getUTCFullYear(),m:dt.getUTCMonth()};
+    renderCal(); renderRecent();
+    if(location.hash!=='#'+ds) history.replaceState(null,'','#'+ds);
+    document.getElementById('main').replaceChildren(Object.assign(el('div','state'),{innerHTML:'<b>Loading</b>正在取出这一期'}));
+    fetch('briefs/'+ds+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){
+      if(cur!==ds) return; renderIssue(d);
+      if(!noScroll && window.innerWidth<=960) document.getElementById('main').scrollIntoView({block:'start'});
+    }).catch(function(){var s=el('div','state');s.append(el('b',null,'Not found'),document.createTextNode('这一期暂时取不到，刷新再试'));document.getElementById('main').replaceChildren(s)});
+  }
+  document.getElementById('prev').addEventListener('click',function(){view.m--; if(view.m<0){view.m=11;view.y--} renderCal()});
+  document.getElementById('next').addEventListener('click',function(){view.m++; if(view.m>11){view.m=0;view.y++} renderCal()});
+  window.addEventListener('hashchange',function(){var h=location.hash.slice(1); if(dates[h]&&h!==cur) go(h)});
+  fetch('briefs/index.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(list){
+    index=list.sort(function(a,b){return a.date<b.date?1:-1}); index.forEach(function(x){dates[x.date]=1});
+    if(!index.length){var s=el('div','state');s.append(el('b',null,'Soon'),document.createTextNode('第一期早报明早 07:41 出刊'));document.getElementById('main').replaceChildren(s);var t=parse(today());view={y:t.getUTCFullYear(),m:t.getUTCMonth()};renderCal();return}
+    var h=location.hash.slice(1); go(dates[h]?h:index[0].date,true);
+  }).catch(function(){var s=el('div','state');s.append(el('b',null,'Offline'),document.createTextNode('目录读取失败，刷新再试'));document.getElementById('main').replaceChildren(s)});
+})();
+</script>
+</body>
+</html>
