@@ -240,6 +240,20 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
 .rv-tbl th,.rv-tbl td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--line);white-space:nowrap}
 .rv-tbl a{text-decoration:underline;text-underline-offset:3px}
 @media (max-width:700px){.rv-stats{grid-template-columns:minmax(0,1fr)}}
+
+/* drawer */
+.dov{position:fixed;inset:0;background:rgba(20,14,10,.55);z-index:40;opacity:0;transition:opacity .3s}
+.dov.on{opacity:1}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(1120px,94vw);background:var(--panel);z-index:41;overflow-y:auto;overscroll-behavior:contain;
+  transform:translateX(102%);transition:transform .45s cubic-bezier(.16,1,.3,1);box-shadow:-30px 0 80px rgba(0,0,0,.35);
+  padding:0 clamp(16px,3vw,40px) calc(48px + env(safe-area-inset-bottom,0px));padding-right:max(clamp(16px,3vw,40px),env(safe-area-inset-right,0px))}
+.drawer.open{transform:none}
+.dbar{position:sticky;top:0;z-index:2;background:var(--panel);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:calc(16px + env(safe-area-inset-top,0px)) 0 14px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.dtitle{font-family:"Noto Serif SC",serif;font-weight:700;font-size:22px;line-height:1.3}
+.drawer .dcal{top:84px}
+body.lock{overflow:hidden}
+@media (max-width:700px){.drawer{width:100vw}}
+@media (prefers-reduced-motion:reduce){.drawer,.dov{transition:none}}
 </style>
 
 </head>
@@ -255,7 +269,7 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   <header class="bar">
     <span class="cap">Frontier · Siabuilt</span>
     <span class="cap mid">Part I</span>
-    <nav aria-label="章节"><a class="pill" href="#daily" data-s="daily" style="background:var(--orange);border-color:var(--orange);color:#1B120D">Today</a><a class="pill on" href="#shelf-top" data-s="top">Shelf</a><a class="pill" href="#revenue" data-s="revenue">Revenue</a><a class="pill" href="#builders" data-s="builders">Builders</a><a class="pill" href="#rules" data-s="rules">Rules</a></nav>
+    <nav aria-label="章节"><a class="pill" href="#daily" data-open="daily" style="background:var(--orange);border-color:var(--orange);color:#1B120D">Today</a><a class="pill on" href="#shelf-top" data-s="top">Shelf</a><a class="pill" href="#builders" data-s="builders">Builders</a><a class="pill" href="#rules" data-s="rules">Rules</a><a class="pill" href="#revenue" data-s="revenue">Revenue</a></nav>
   </header>
 
   <div id="shelf-top" data-idx="01">
@@ -264,42 +278,16 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
       <h1>The Frontier<br>Curation</h1>
       <p class="lede">Frontier 早报的全部信源。只跟随在一线做产品、做模型、做硬件的人，每条消息都能回到原文。</p>
     </div>
-    <div style="text-align:center"><a class="teaser" id="teaser" href="#daily" hidden><span class="tl"></span><span class="tg">今日早报 ↓</span></a></div>
+    <div style="text-align:center"><a class="teaser" id="teaser" href="#daily" data-open="daily" hidden><span class="tl"></span><span class="tg">今日早报 ↓</span></a></div>
     <div class="shelf"><div class="bay"><div class="books"><a class="spine t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:222px;--w:54px" href="https://simonwillison.net" target="_blank" rel="noopener" data-n="Simon Willison" data-d="新模型与工具的实测笔记" data-k="一手长文"><span class="st">Simon Willison</span><span class="sn">01</span></a><a class="spine t-serif lean" style="--bg:#3E1E22;--fg:#E9B23A;--h:256px;--w:60px" href="https://www.oneusefulthing.org" target="_blank" rel="noopener" data-n="One Useful Thing" data-d="Ethan Mollick：AI 与工作，附数据" data-k="一手长文"><span class="st">One Useful Thing</span><span class="sn">02</span></a><a class="spine t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:270px;--w:51px" href="https://www.interconnects.ai" target="_blank" rel="noopener" data-n="Interconnects" data-d="Nathan Lambert：开源模型与后训练" data-k="一手长文"><span class="st">Interconnects</span><span class="sn">03</span></a><a class="spine t-serif face" style="--bg:#F6F2EA;--fg:#1F2A55;--h:176px;--w:124px" href="https://importai.substack.com" target="_blank" rel="noopener" data-n="Import AI" data-d="Jack Clark：每周前沿研究" data-k="一手长文"><span class="fc"><span class="fk">一手长文</span><span class="ft">Import AI</span><span class="fd">Jack Clark：每周前沿研究</span></span></a><a class="spine t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:200px;--w:48px" href="https://hamel.dev" target="_blank" rel="noopener" data-n="Hamel Husain" data-d="AI 产品评估方法" data-k="一手长文"><span class="st">Hamel Husain</span><span class="sn">05</span></a><a class="spine t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:253px;--w:42px" href="https://eugeneyan.com" target="_blank" rel="noopener" data-n="Eugene Yan" data-d="LLM 系统落地模式" data-k="一手长文"><span class="st">Eugene Yan</span><span class="sn">06</span></a><a class="spine t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:203px;--w:48px" href="https://newsletter.semianalysis.com" target="_blank" rel="noopener" data-n="SemiAnalysis" data-d="芯片、数据中心、算力供应链" data-k="一手长文"><span class="st">SemiAnalysis</span><span class="sn">07</span></a><a class="spine t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:296px;--w:40px" href="https://www.lennysnewsletter.com" target="_blank" rel="noopener" data-n="Lenny&#x27;s Newsletter" data-d="产品方法论与 How I AI" data-k="一手长文"><span class="st">Lenny&#x27;s Newsletter</span><span class="sn">08</span></a><a class="spine t-sans " style="--bg:#2E5A3F;--fg:#F1EBDD;--h:235px;--w:48px" href="https://www.latent.space" target="_blank" rel="noopener" data-n="Latent Space" data-d="AI 工程每日动态" data-k="一手长文"><span class="st">Latent Space</span><span class="sn">09</span></a><a class="spine t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:290px;--w:60px" href="https://www.dwarkesh.com" target="_blank" rel="noopener" data-n="Dwarkesh Podcast" data-d="长访谈，附完整文字稿" data-k="一手长文"><span class="st">Dwarkesh Podcast</span><span class="sn">10</span></a></div><div class="baylab"><span>Long Reads</span><span>一手长文 · 10</span></div></div><div class="bay"><div class="books"><a class="spine t-cond " style="--bg:#222222;--fg:#F3EFE6;--h:235px;--w:48px" href="https://www.youtube.com/@LatentSpacePod" target="_blank" rel="noopener" data-n="Latent Space" data-d="播客" data-k="播客"><span class="st">Latent Space</span><span class="sn">11</span></a><a class="spine t-cond lean" style="--bg:#D6D4CE;--fg:#111111;--h:231px;--w:51px" href="https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8" target="_blank" rel="noopener" data-n="Training Data" data-d="播客" data-k="播客"><span class="st">Training Data</span><span class="sn">12</span></a><a class="spine t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:230px;--w:39px" href="https://www.youtube.com/@NoPriorsPodcast" target="_blank" rel="noopener" data-n="No Priors" data-d="播客" data-k="播客"><span class="st">No Priors</span><span class="sn">13</span></a><a class="spine t-serif face" style="--bg:#3E1E22;--fg:#E9B23A;--h:176px;--w:124px" href="https://www.youtube.com/@RedpointAI" target="_blank" rel="noopener" data-n="Unsupervised Learning" data-d="播客" data-k="播客"><span class="fc"><span class="fk">播客</span><span class="ft">Unsupervised Learning</span><span class="fd">播客</span></span></a><a class="spine t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:302px;--w:57px" href="https://www.youtube.com/@DataDrivenNYC" target="_blank" rel="noopener" data-n="The MAD Podcast" data-d="播客" data-k="播客"><span class="st">The MAD Podcast</span><span class="sn">15</span></a><a class="spine t-serif " style="--bg:#F6F2EA;--fg:#1F2A55;--h:196px;--w:56px" href="https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL" target="_blank" rel="noopener" data-n="AI &amp; I" data-d="播客" data-k="播客"><span class="st">AI &amp; I</span><span class="sn">16</span></a><a class="spine t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:303px;--w:56px" href="https://allin.com" target="_blank" rel="noopener" data-n="All-In" data-d="播客" data-k="播客"><span class="st">All-In</span><span class="sn">17</span></a><a class="spine t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:253px;--w:62px" href="https://www.acquired.fm" target="_blank" rel="noopener" data-n="Acquired" data-d="播客" data-k="播客"><span class="st">Acquired</span><span class="sn">18</span></a><div class="spine t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:234px;--w:47px" data-n="BG2" data-d="播客" data-k="播客"><span class="st">BG2</span><span class="sn">19</span></div></div><div class="baylab"><span>Podcasts</span><span>播客 · 9</span></div></div><div class="bay"><div class="books"><a class="spine t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:300px;--w:45px" href="https://openai.com/news/" target="_blank" rel="noopener" data-n="OpenAI News" data-d="模型发布、收购、研究" data-k="官方一手"><span class="st">OpenAI News</span><span class="sn">20</span></a><a class="spine t-sans lean" style="--bg:#2E5A3F;--fg:#F1EBDD;--h:294px;--w:46px" href="https://deepmind.google/blog/" target="_blank" rel="noopener" data-n="Google DeepMind Blog" data-d="研究与 Gemini 发布" data-k="官方一手"><span class="st">Google DeepMind Blog</span><span class="sn">21</span></a><a class="spine t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:222px;--w:54px" href="https://www.anthropic.com/news" target="_blank" rel="noopener" data-n="Anthropic News" data-d="Claude 发布与公司公告" data-k="官方一手"><span class="st">Anthropic News</span><span class="sn">22</span></a><a class="spine t-cond face" style="--bg:#222222;--fg:#F3EFE6;--h:176px;--w:124px" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener" data-n="Anthropic Engineering" data-d="工程深度文章" data-k="官方一手"><span class="fc"><span class="fk">官方一手</span><span class="ft">Anthropic Engineering</span><span class="fd">工程深度文章</span></span></a><div class="spine t-heavy " style="--bg:#D6D4CE;--fg:#111111;--h:197px;--w:59px" data-n="财报与监管文件" data-d="Tesla 等公司的一手披露" data-k="官方一手"><span class="st">财报与监管文件</span><span class="sn">24</span></div></div><div class="baylab"><span>Primary</span><span>官方一手 · 5</span></div></div></div>
     <div class="shelfcap" id="cap" aria-live="polite"><span class="cn">24 本书，一手长文、播客与官方渠道</span><span class="cd">悬停书脊查看，点击打开</span></div>
-    <div class="herofoot cap"><span>Scroll to explore</span><span id="counter">01 — 05</span></div>
+    <div class="herofoot cap"><span>Scroll to explore</span><span id="counter">01 — 04</span></div>
   </div>
 
-  <section class="s" id="daily" data-idx="02">
-    <div class="shead">
-      <div><div class="cap" style="color:var(--mute)">02 — Today's Issue</div><h2>Frontier Daily</h2></div>
-      <span class="cap" style="color:var(--mute)">每天 07:41 出刊 · 点日历翻阅往期</span>
-    </div>
-    <div class="dwrap">
-      <aside class="dcal">
-        <div class="mhead"><div class="mtitle" id="mtitle">—</div><div class="mnav"><button type="button" id="prev" aria-label="上个月">‹</button><button type="button" id="next" aria-label="下个月">›</button></div></div>
-        <div class="dow cap"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
-        <div class="days" id="days"></div>
-        <p class="dleg">彩色书脊是出过刊的日子，点一下翻到那一期。</p>
-        <div class="recent" id="recent"></div>
-      </aside>
-      <div class="dmain" id="dmain"><div class="dstate"><b>Loading</b>正在取出这一期</div></div>
-    </div>
-  </section>
 
-  <section class="s" id="revenue" data-idx="03">
+  <section class="s" id="builders" data-idx="02">
     <div class="shead">
-      <div><div class="cap" style="color:var(--mute)">03 — Revenue Pulse</div><h2>AI Demand Curve</h2></div>
-      <div class="modes" role="group" aria-label="坐标"><button type="button" class="pill rv-sc" data-sc="lin" aria-pressed="true">Linear</button><button type="button" class="pill rv-sc" data-sc="log" aria-pressed="false">Log</button></div>
-    </div>
-    <div class="rv-stats" id="rv-stats"></div>
-    <div class="rv-chart"><svg id="rv-svg" role="img" aria-label="Anthropic 与 OpenAI 年化营收曲线"></svg><div class="rv-tip" id="rv-tip" hidden></div></div>
-    <p class="rv-note" id="rv-note"></p>
-    <details class="rv-src"><summary class="cap">数据点与来源</summary><div class="rv-tbl" id="rv-tbl"></div></details>
-  </section>
-  <section class="s" id="builders" data-idx="04">
-    <div class="shead">
-      <div><div class="cap" style="color:var(--mute)">04 — Builders on X</div><h2>43 Builders</h2></div>
+      <div><div class="cap" style="color:var(--mute)">02 — Builders on X</div><h2>43 Builders</h2></div>
       <div class="modes" role="group" aria-label="展示方式"><button type="button" class="pill" data-m="ring" aria-pressed="true">Ring</button><button type="button" class="pill" data-m="grid" aria-pressed="false">Grid</button><button type="button" class="pill" data-m="list" aria-pressed="false">Index</button></div>
     </div>
     <div class="ringwrap" id="v-ring">
@@ -317,8 +305,8 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
     <div class="legend cap"><span>26 daily via follow-builders</span><span>Pending = 接入中</span></div>
   </section>
 
-  <section class="s" id="rules" data-idx="05">
-    <div class="shead"><div><div class="cap" style="color:var(--mute)">05 — House Rules</div><h2>Closer to source</h2></div><span class="cap" style="color:var(--mute)">越靠近源头，权重越高</span></div>
+  <section class="s" id="rules" data-idx="03">
+    <div class="shead"><div><div class="cap" style="color:var(--mute)">03 — House Rules</div><h2>Closer to source</h2></div><span class="cap" style="color:var(--mute)">越靠近源头，权重越高</span></div>
     <ol class="rules">
       <li><span class="rn">01</span><div class="rbody"><div class="rbar" style="--c:var(--orange);--wd:100%"></div><span class="rt"><span class="zh">一手经验分享</span></span><span class="rd">builder 本人的帖子、博客与访谈，写自己做了什么、踩了什么坑。</span></div></li>
       <li><span class="rn">02</span><div class="rbody"><div class="rbar" style="--c:var(--cobalt);--wd:62%"></div><span class="rt"><span class="zh">官方一手发布</span></span><span class="rd">模型与产品发布、收购、研究、财报与监管文件。</span></div></li>
@@ -332,12 +320,37 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
     </div>
   </section>
 
+  <section class="s" id="revenue" data-idx="04">
+    <div class="shead">
+      <div><div class="cap" style="color:var(--mute)">04 — Revenue Pulse</div><h2>AI Demand Curve</h2></div>
+      <div class="modes" role="group" aria-label="坐标"><button type="button" class="pill rv-sc" data-sc="lin" aria-pressed="true">Linear</button><button type="button" class="pill rv-sc" data-sc="log" aria-pressed="false">Log</button></div>
+    </div>
+    <div class="rv-stats" id="rv-stats"></div>
+    <div class="rv-chart"><svg id="rv-svg" role="img" aria-label="Anthropic 与 OpenAI 年化营收曲线"></svg><div class="rv-tip" id="rv-tip" hidden></div></div>
+    <p class="rv-note" id="rv-note"></p>
+    <details class="rv-src"><summary class="cap">数据点与来源</summary><div class="rv-tbl" id="rv-tbl"></div></details>
+  </section>
+
   <footer class="pf cap">
     <span>Maintained by Sia · Compiled daily with Claude</span>
     <span>Core list via <a href="https://github.com/zarazhangrui/follow-builders" target="_blank" rel="noopener">follow-builders</a> by Zara Zhang</span>
   </footer>
 </div>
 
+<div class="dov" id="dov" hidden></div>
+<aside class="drawer" id="daily" role="dialog" aria-modal="true" aria-label="Frontier 早报" aria-hidden="true" tabindex="-1">
+  <div class="dbar"><div><div class="cap" style="color:var(--mute)">Frontier Daily · 每天 07:41 出刊</div><div class="dtitle">今日早报</div></div><button type="button" class="pill" id="dclose" aria-label="关闭">Close ✕</button></div>
+  <div class="dwrap">
+      <aside class="dcal">
+        <div class="mhead"><div class="mtitle" id="mtitle">—</div><div class="mnav"><button type="button" id="prev" aria-label="上个月">‹</button><button type="button" id="next" aria-label="下个月">›</button></div></div>
+        <div class="dow cap"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+        <div class="days" id="days"></div>
+        <p class="dleg">彩色书脊是出过刊的日子，点一下翻到那一期。</p>
+        <div class="recent" id="recent"></div>
+      </aside>
+      <div class="dmain" id="dmain"><div class="dstate"><b>Loading</b>正在取出这一期</div></div>
+    </div>
+</aside>
 <script>
 (function(){
   var P=[{"n": "Andrej Karpathy", "h": "karpathy", "note": "OpenAI 创始成员，前 Tesla AI 总监（Autopilot），Eureka Labs 创始人；2026 年 5 月加入 Anthropic 带预训练团队", "g": "研究与模型", "st": "live"}, {"n": "Amanda Askell", "h": "AmandaAskell", "note": "Anthropic 研究员，主导 Claude 性格与价值观设计，哲学博士", "g": "研究与模型", "st": "live"}, {"n": "Sam Altman", "h": "sama", "note": "OpenAI CEO，前 Y Combinator 总裁", "g": "研究与模型", "st": "live"}, {"n": "Alex Albert", "h": "alexalbert__", "note": "Anthropic 开发者关系负责人，Claude 生态与 prompt 实践的一线布道者", "g": "研究与模型", "st": "live"}, {"n": "Claude", "h": "claudeai", "note": "Anthropic 旗下 Claude 官方账号，发布产品更新", "g": "研究与模型", "st": "live"}, {"n": "Greg Brockman", "h": "gdb", "note": "OpenAI 联合创始人兼总裁，前 Stripe CTO", "g": "研究与模型", "st": "soon"}, {"n": "Noam Brown", "h": "polynoamial", "note": "OpenAI 研究员，推理模型 o1 核心贡献者；此前做出扑克 AI Libratus / Pluribus", "g": "研究与模型", "st": "soon"}, {"n": "Nathan Lambert", "h": "natolambert", "note": "Ai2 研究员，Interconnects 主理人，后训练与 RLHF 方向，写过开源 RLHF 教材", "g": "研究与模型", "st": "soon"}, {"n": "Jack Clark", "h": "jackclarkSF", "note": "Anthropic 联合创始人、政策负责人，Import AI 作者，前 OpenAI 政策总监", "g": "研究与模型", "st": "soon"}, {"n": "Boris Cherny", "h": "bcherny", "note": "Anthropic 工程师，Claude Code 的创造者，《Programming TypeScript》作者", "g": "Agent 与编码", "st": "live"}, {"n": "Cat Wu", "h": "_catwu", "note": "Anthropic，Claude Code 产品负责人", "g": "Agent 与编码", "st": "live"}, {"n": "Thariq", "h": "trq212", "note": "Anthropic，Claude Code 工程师，常分享 agent 设计与非编码用法", "g": "Agent 与编码", "st": "live"}, {"n": "Thibault Sottiaux", "h": "thsottiaux", "note": "OpenAI，Codex 工程负责人", "g": "Agent 与编码", "st": "live"}, {"n": "Peter Steinberger", "h": "steipete", "note": "PSPDFKit 创始人，开源个人 agent OpenClaw 作者", "g": "Agent 与编码", "st": "live"}, {"n": "Amjad Masad", "h": "amasad", "note": "Replit 创始人兼 CEO", "g": "Agent 与编码", "st": "live"}, {"n": "Guillermo Rauch", "h": "rauchg", "note": "Vercel 创始人兼 CEO，Next.js 与 Socket.io 作者", "g": "Agent 与编码", "st": "live"}, {"n": "Lee Robinson", "h": "leerob", "note": "Cursor，前 Vercel 开发者体验 VP，Next.js 布道者", "g": "Agent 与编码", "st": "soon"}, {"n": "Michael Truell", "h": "mntruell", "note": "Cursor（Anysphere）联合创始人兼 CEO", "g": "Agent 与编码", "st": "soon"}, {"n": "Jason Liu", "h": "jxnlco", "note": "Instructor 开源库作者，OpenAI Codex 团队", "g": "Agent 与编码", "st": "soon"}, {"n": "Harrison Chase", "h": "hwchase17", "note": "LangChain 创始人兼 CEO", "g": "Agent 与编码", "st": "soon"}, {"n": "Simon Willison", "h": "simonw", "note": "Django 联合创作者，Datasette 与 LLM 命令行工具作者", "g": "Agent 与编码", "st": "soon"}, {"n": "Josh Woodward", "h": "joshwoodward", "note": "Google VP，负责 Google Labs 与 Gemini App，NotebookLM 背后的推手", "g": "产品与工作方式", "st": "live"}, {"n": "Google Labs", "h": "GoogleLabs", "note": "Google 的实验性 AI 产品团队，NotebookLM 等产品出自这里", "g": "产品与工作方式", "st": "live"}, {"n": "Peter Yang", "h": "petergyang", "note": "Roblox 产品负责人，Behind the Craft 主理人", "g": "产品与工作方式", "st": "live"}, {"n": "Nan Yu", "h": "thenanyu", "note": "Linear 产品负责人", "g": "产品与工作方式", "st": "live"}, {"n": "Madhu Guru", "h": "realmadhuguru", "note": "AI 产品人，长期分享大模型产品的设计与落地经验", "g": "产品与工作方式", "st": "live"}, {"n": "Ryo Lu", "h": "ryolu_", "note": "Cursor 设计负责人，前 Notion、Stripe 设计师", "g": "产品与工作方式", "st": "live"}, {"n": "Zara Zhang", "h": "zarazhangrui", "note": "follow-builders 等开源 skill 作者，不写代码、靠 agent 做产品的 AI 原生 builder", "g": "产品与工作方式", "st": "live"}, {"n": "Dan Shipper", "h": "danshipper", "note": "Every 联合创始人兼 CEO，AI & I 播客主理人", "g": "产品与工作方式", "st": "live"}, {"n": "Logan Kilpatrick", "h": "OfficialLoganK", "note": "Google AI Studio 与 Gemini API 产品负责人，前 OpenAI 开发者关系", "g": "产品与工作方式", "st": "soon"}, {"n": "Ammaar Reshi", "h": "ammaar", "note": "Google AI Studio 产品与设计负责人，以 vibe coding 演示走红", "g": "产品与工作方式", "st": "soon"}, {"n": "Ethan Mollick", "h": "emollick", "note": "沃顿商学院教授，《Co-Intelligence》作者，One Useful Thing 主理人", "g": "产品与工作方式", "st": "soon"}, {"n": "Greg Isenberg", "h": "gregisenberg", "note": "Late Checkout 创始人，The Startup Ideas 播客主理人", "g": "产品与工作方式", "st": "soon"}, {"n": "Hamel Husain", "h": "HamelHusain", "note": "AI 评估方向独立顾问，前 GitHub、Airbnb 机器学习工程师", "g": "产品与工作方式", "st": "soon"}, {"n": "Aaron Levie", "h": "levie", "note": "Box 联合创始人兼 CEO", "g": "投资与企业", "st": "live"}, {"n": "Garry Tan", "h": "garrytan", "note": "Y Combinator 总裁兼 CEO，Initialized Capital 联合创始人", "g": "投资与企业", "st": "live"}, {"n": "Matt Turck", "h": "mattturck", "note": "FirstMark 合伙人，年度 MAD（数据与 AI）版图作者，The MAD Podcast 主理人", "g": "投资与企业", "st": "live"}, {"n": "Nikunj Kothari", "h": "nikunj", "note": "早期科技投资人，常写 AI 与创业观察", "g": "投资与企业", "st": "live"}, {"n": "Aditya Agarwal", "h": "adityaag", "note": "South Park Commons 合伙人，前 Dropbox CTO、Facebook 早期工程师", "g": "投资与企业", "st": "live"}, {"n": "Swyx", "h": "swyx", "note": "Latent Space 播客主理人，AI Engineer 大会发起人", "g": "投资与企业", "st": "live"}, {"n": "Jim Fan", "h": "DrJimFan", "note": "NVIDIA 研究科学家，GEAR 具身智能实验室联合负责人", "g": "硬科技与制造", "st": "soon"}, {"n": "Dylan Patel", "h": "dylan522p", "note": "SemiAnalysis 创始人，芯片与算力供应链分析", "g": "硬科技与制造", "st": "soon"}, {"n": "Elon Musk", "h": "elonmusk", "note": "Tesla、SpaceX CEO，xAI 创始人", "g": "硬科技与制造", "st": "soon"}];
@@ -370,7 +383,7 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   var counter=document.getElementById('counter'), navs=document.querySelectorAll('.bar nav .pill');
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
-      var idx=e.target.getAttribute('data-idx'); counter.textContent=idx+' — 05';
+      var idx=e.target.getAttribute('data-idx'); counter.textContent=idx+' — 04';
       var key=e.target.id==='shelf-top'?'top':e.target.id;
       navs.forEach(function(a){a.classList.toggle('on',a.getAttribute('data-s')===key)});
     }})},{rootMargin:'-40% 0px -55% 0px'});
@@ -383,7 +396,14 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   var PAL=[["#E8642C","#1B120D"],["#2F55B5","#fff"],["#F2A7C3","#1B120D"],["#1F2A55","#F3EFE6"],["#E9B23A","#2A1D16"],["#D9373B","#FFF3EA"],["#2E5A3F","#F1EBDD"],["#C9A6E0","#1B120D"],["#3E1E22","#E9B23A"]];
   var SEC={x:["#E8642C","#1B120D"],pod:["#2F55B5","#fff"],industry:["#2E5A3F","#F1EBDD"]};
   var WK=["SUN","MON","TUE","WED","THU","FRI","SAT"], PREVIEW=2;
-  var index=[],dates={},view=null,cur=null,full=false,data=null;
+  
+  var dr=document.getElementById('daily'),ov=document.getElementById('dov'),lastF=null;
+  function openD(){if(dr.classList.contains('open'))return;lastF=document.activeElement;ov.hidden=false;requestAnimationFrame(function(){ov.classList.add('on');dr.classList.add('open')});dr.setAttribute('aria-hidden','false');document.body.classList.add('lock');setTimeout(function(){dr.focus()},50);if(cur&&location.hash!=='#'+cur)history.replaceState(null,'','#'+cur)}
+  function closeD(){dr.classList.remove('open');ov.classList.remove('on');dr.setAttribute('aria-hidden','true');document.body.classList.remove('lock');setTimeout(function(){ov.hidden=true},300);history.replaceState(null,'',location.pathname);if(lastF)lastF.focus()}
+  document.querySelectorAll('[data-open="daily"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openD()})});
+  document.getElementById('dclose').addEventListener('click',closeD);ov.addEventListener('click',closeD);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dr.classList.contains('open'))closeD()});
+var index=[],dates={},view=null,cur=null,full=false,data=null;
   function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
   function pal(ds){var n=0;for(var i=0;i<ds.length;i++)n+=ds.charCodeAt(i)*(i+1);return PAL[n%PAL.length]}
   function today(){return new Date(Date.now()+8*3600e3).toISOString().slice(0,10)}
@@ -424,15 +444,15 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   }
   function go(ds,scroll){cur=ds;full=false;var dt=parse(ds);view={y:dt.getUTCFullYear(),m:dt.getUTCMonth()};cal();recent();
     if(scroll&&location.hash!=='#'+ds)history.replaceState(null,'','#'+ds);state('Loading','正在取出这一期');
-    fetch('briefs/'+ds+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(cur!==ds)return;data=d;render();if(scroll)document.getElementById('daily').scrollIntoView({block:'start'})}).catch(function(){state('Not found','这一期暂时取不到，刷新再试')})}
+    fetch('briefs/'+ds+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(cur!==ds)return;data=d;render();document.getElementById('daily').scrollTop=0}).catch(function(){state('Not found','这一期暂时取不到，刷新再试')})}
   document.getElementById('prev').addEventListener('click',function(){view.m--;if(view.m<0){view.m=11;view.y--}cal()});
   document.getElementById('next').addEventListener('click',function(){view.m++;if(view.m>11){view.m=0;view.y++}cal()});
-  window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(dates[h]&&h!==cur)go(h,true)});
+  window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(dates[h]){if(h!==cur)go(h,true);openD()}});
   fetch('briefs/index.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(list){
     index=list.sort(function(a,b){return a.date<b.date?1:-1});index.forEach(function(x){dates[x.date]=1});
     if(!index.length){var t=parse(today());view={y:t.getUTCFullYear(),m:t.getUTCMonth()};cal();state('Soon','第一期明早 07:41 出刊');return}
     var t=document.getElementById('teaser');if(t){t.href='#daily';t.querySelector('.tl').textContent=md(index[0].date)+' · '+index[0].headline;t.hidden=false}
-    var h=location.hash.slice(1);go(dates[h]?h:index[0].date,!!dates[h]);
+    var h=location.hash.slice(1);go(dates[h]?h:index[0].date,false);if(dates[h]||h==='daily')openD();
   }).catch(function(){state('Offline','目录读取失败，刷新再试')});
 })();
 
