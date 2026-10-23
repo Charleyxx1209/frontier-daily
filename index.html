@@ -359,6 +359,30 @@ body.lock{overflow:hidden}
 .days.month .day{aspect-ratio:auto;height:44px;align-items:center;justify-content:center;font-size:14px}
 .dbig{font-size:clamp(44px,6vw,72px)}
 .mast{padding-bottom:8px}
+
+/* drawer typography v2: one scale — 13 / 14 / 16 / 20 / 48 */
+.drawer .dbig{font-size:clamp(40px,5vw,56px)}
+.drawer .dbig em{font-size:.42em}
+.drawer .ed b{font-size:18px}
+.drawer .headline{font-size:clamp(18px,1.8vw,21px);line-height:1.6;margin-top:18px;max-width:42em;font-weight:700}
+.drawer .themes{gap:0;margin-top:14px;border-top:1px solid var(--line)}
+.drawer .themes li{background:transparent;border-radius:0;border-top:0;border-left:3px solid var(--c);padding:10px 14px;font-size:13px;line-height:1.6;color:var(--mute);margin-top:10px}
+.drawer .themes li b{display:inline;font-family:var(--f-mono);font-size:11px;color:var(--ink);margin-right:6px}
+.drawer .dsec{margin-top:34px}
+.drawer .dsh{padding-bottom:8px;margin-bottom:14px}
+.drawer .dsh .no{font-size:26px}
+.drawer .dsh h3{font-size:17px}
+.drawer .items{gap:12px}
+.drawer .item{padding:16px 18px;gap:8px}
+.drawer .item h4{font-size:15.5px;line-height:1.5}
+.drawer .item p{font-size:13.5px;line-height:1.65}
+.drawer .q .en{font-size:15px}
+.drawer .q .zh{font-size:12px}
+.drawer .sw{font-size:13.5px;font-weight:600;background:transparent;padding:0;color:var(--ink)}
+.drawer .sw::before{font-weight:400}
+.drawer .qs h3{font-size:18px}
+.drawer .item p.sm{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;cursor:pointer}
+.drawer .item p.sm.open{display:block}
 </style>
 
 </head>
@@ -525,7 +549,7 @@ var index=[],dates={},view=null,cur=null,full=false,data=null;
   function recent(){var r=document.getElementById('recent');r.replaceChildren();index.slice(0,6).forEach(function(x){var a=el('a',x.date===cur?'on':'');a.href='#'+x.date;var d=parse(x.date),dd=el('div','rd',md(x.date));dd.append(el('small',null,WK[d.getUTCDay()]));a.append(dd,el('div','rh',x.headline||''));a.addEventListener('click',function(e){e.preventDefault();go(x.date,true)});r.append(a)})}
   function item(it,sid){var a=el('article','item'),p=SEC[sid]||PAL[0];a.style.setProperty('--c',p[0]);a.style.setProperty('--t',p[1]);
     var w=el('div','who');w.append(el('b',null,it.who||''));if(it.tag)w.append(el('span','tag',it.tag));a.append(w);
-    if(it.title)a.append(el('h4',null,it.title));if(it.summary)a.append(el('p',null,it.summary));
+    if(it.title)a.append(el('h4',null,it.title));if(it.summary){var sm=el('p','sm',it.summary);sm.title='点击展开';sm.addEventListener('click',function(){sm.classList.toggle('open')});a.append(sm)}
     if(it.quote||it.quoteZh){var q=el('div','q');if(it.quote)q.append(el('span','en','“'+it.quote+'”'));if(it.quoteZh)q.append(el('span','zh',it.quoteZh));a.append(q)}
     if(it.soWhat)a.append(el('p','sw',it.soWhat));var u=safe(it.url);if(u){var l=el('a','src',(it.sourceLabel||'原文')+' ↗');l.href=u;l.target='_blank';l.rel='noopener';a.append(l)}return a}
   function render(){var d=data,m=document.getElementById('dmain');m.replaceChildren();var dt=parse(d.date);
