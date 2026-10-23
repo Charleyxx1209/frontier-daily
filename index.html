@@ -272,6 +272,68 @@ body.lock{overflow:hidden}
 .pl-card svg{width:100%;height:40px;display:block}
 .pl-card .wait{font-size:13px;color:var(--mute);border:1px dashed var(--line);border-radius:4px;padding:10px;text-align:center}
 @media (max-width:700px){.pl-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* single shelf */
+.bay.one{max-width:100%}
+.bay.one .books{gap:3px}
+.bookend{flex:none;width:22px;height:150px;background:var(--ink);color:var(--panel);border-radius:3px 3px 0 0;display:flex;align-items:center;justify-content:center;margin-inline:8px;clip-path:polygon(0 18%,100% 0,100% 100%,0 100%)}
+.bookend span{writing-mode:vertical-rl;font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.mk{display:block;flex:none}
+.mk-r{width:70%;height:0;border-top:2px solid currentColor;box-shadow:0 4px 0 -1px currentColor;opacity:.75;margin-bottom:2px}
+.mk-p{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle,var(--bg) 0 2px,currentColor 2.5px 100%);opacity:.9}
+.mk-o{writing-mode:vertical-rl;font-family:var(--f-mono);font-size:8px;letter-spacing:.12em;background:var(--fg);color:var(--bg);padding:4px 1px;border-radius:1px}
+.spine.k-official{padding-bottom:6px}
+.legend2{justify-content:center!important;gap:22px!important;flex-wrap:wrap}
+.legend2 span{display:inline-flex;align-items:center;gap:6px}
+.lg{display:inline-block;width:14px;height:14px;border:1px solid var(--ink);position:relative}
+.lg-r::after{content:"";position:absolute;left:2px;right:2px;top:3px;border-top:2px solid var(--ink)}
+.lg-p{border-radius:50%;background:radial-gradient(circle,var(--panel) 0 2px,var(--ink) 2.5px)}
+.lg-o{background:var(--ink)}
+
+/* top week calendar */
+.dwrap{display:block}
+.wk{margin-bottom:28px}
+.wk-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.wk-ctl{display:flex;gap:10px;align-items:center}
+.wk .mtitle{font-size:28px}
+.days.week{gap:6px}
+.days.week .day{aspect-ratio:auto;height:78px;align-items:flex-start;padding:8px 10px;justify-content:space-between;border-radius:4px 4px 0 0}
+.days.week .dn{font-family:var(--f-display);font-size:24px;line-height:1;color:inherit}
+.days.week .dw{font-size:9px;letter-spacing:.1em}
+.days.week .dh{font-size:10px;opacity:.85}
+.days.week .day:not(.has){color:var(--mute)}
+.days.month{max-width:420px}
+#dow{display:none}
+.days.month+*{}
+@media (max-width:520px){.days.week .day{height:64px;padding:6px}.days.week .dn{font-size:18px}.days.week .dh{display:none}}
+
+/* ticker */
+.ticker{display:grid;grid-template-columns:auto repeat(5,minmax(0,1fr));border:1px solid var(--ink);border-radius:6px;background:var(--paper);margin:-8px 0 22px;overflow:hidden}
+.tk-h{display:flex;flex-direction:column;justify-content:center;padding:8px 12px;background:var(--ink);color:var(--panel);font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;line-height:1.5}
+.tk-h b{font-family:"Noto Serif SC",serif;font-weight:700;font-size:14px;letter-spacing:0}
+.tk{display:grid;grid-template-columns:minmax(0,1fr) 50px;column-gap:6px;padding:7px 10px;border-left:1px solid var(--line);min-width:0}
+.tk:hover{background:var(--panel)}
+.tk .l{grid-column:1/-1;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.05em;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk .v{font-family:var(--f-display);font-size:19px;line-height:1.15;white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+.tk .v small{font-family:var(--f-mono);font-size:9px;margin-left:2px}
+.tk .c{grid-column:1;font-family:var(--f-mono);font-size:10px;white-space:nowrap}
+.tk .up{color:#1F7A4A}.tk .dn2{color:#D9373B}.tk .na{color:var(--mute)}
+.tk svg{grid-row:2/4;grid-column:2;width:50px;height:22px;align-self:center}
+@media (max-width:900px){.ticker{grid-template-columns:repeat(3,minmax(0,1fr))}.tk-h{grid-column:1/-1;flex-direction:row;gap:8px;align-items:baseline;padding:6px 10px}.tk{border-top:1px solid var(--line)}}
+@media (max-width:480px){.ticker{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.rules-s{padding-block:clamp(28px,4vw,44px)!important}
+.rl{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:28px;align-items:start}
+.rl-h{font-size:clamp(24px,3vw,34px)!important}
+.rl-d{margin:6px 0 0;color:var(--mute);font-size:14px}
+.rl-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rl-list li{display:flex;flex-direction:column;gap:4px}
+.rl-list i{display:block;height:8px;width:var(--w);background:var(--c);border-radius:2px;margin-bottom:6px}
+.rl-list b{font-family:"Noto Serif SC",serif;font-size:17px}
+.rl-list span{font-size:13px;color:var(--mute);line-height:1.5}
+.rl-never{margin:18px 0 0;font-size:13px;color:var(--mute);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rl-never .cap{color:var(--ink)}
+@media (max-width:760px){.rl{grid-template-columns:minmax(0,1fr)}.rl-list{grid-template-columns:minmax(0,1fr)}}
 </style>
 
 </head>
@@ -296,8 +358,8 @@ body.lock{overflow:hidden}
       <h1>The Frontier<br>Curation</h1>
       <p class="lede">Frontier 早报的全部信源。只跟随在一线做产品、做模型、做硬件的人，每条消息都能回到原文。</p>
     </div>
-    <div style="text-align:center"><a class="teaser" id="teaser" href="#daily" data-open="daily" hidden><span class="tl"></span><span class="tg">今日早报 ↓</span></a></div>
-    <div class="shelf"><div class="bay"><div class="books"><a class="spine t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:222px;--w:54px" href="https://simonwillison.net" target="_blank" rel="noopener" data-n="Simon Willison" data-d="新模型与工具的实测笔记" data-k="一手长文"><span class="st">Simon Willison</span><span class="sn">01</span></a><a class="spine t-serif lean" style="--bg:#3E1E22;--fg:#E9B23A;--h:256px;--w:60px" href="https://www.oneusefulthing.org" target="_blank" rel="noopener" data-n="One Useful Thing" data-d="Ethan Mollick：AI 与工作，附数据" data-k="一手长文"><span class="st">One Useful Thing</span><span class="sn">02</span></a><a class="spine t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:270px;--w:51px" href="https://www.interconnects.ai" target="_blank" rel="noopener" data-n="Interconnects" data-d="Nathan Lambert：开源模型与后训练" data-k="一手长文"><span class="st">Interconnects</span><span class="sn">03</span></a><a class="spine t-serif face" style="--bg:#F6F2EA;--fg:#1F2A55;--h:176px;--w:124px" href="https://importai.substack.com" target="_blank" rel="noopener" data-n="Import AI" data-d="Jack Clark：每周前沿研究" data-k="一手长文"><span class="fc"><span class="fk">一手长文</span><span class="ft">Import AI</span><span class="fd">Jack Clark：每周前沿研究</span></span></a><a class="spine t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:200px;--w:48px" href="https://hamel.dev" target="_blank" rel="noopener" data-n="Hamel Husain" data-d="AI 产品评估方法" data-k="一手长文"><span class="st">Hamel Husain</span><span class="sn">05</span></a><a class="spine t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:253px;--w:42px" href="https://eugeneyan.com" target="_blank" rel="noopener" data-n="Eugene Yan" data-d="LLM 系统落地模式" data-k="一手长文"><span class="st">Eugene Yan</span><span class="sn">06</span></a><a class="spine t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:203px;--w:48px" href="https://newsletter.semianalysis.com" target="_blank" rel="noopener" data-n="SemiAnalysis" data-d="芯片、数据中心、算力供应链" data-k="一手长文"><span class="st">SemiAnalysis</span><span class="sn">07</span></a><a class="spine t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:296px;--w:40px" href="https://www.lennysnewsletter.com" target="_blank" rel="noopener" data-n="Lenny&#x27;s Newsletter" data-d="产品方法论与 How I AI" data-k="一手长文"><span class="st">Lenny&#x27;s Newsletter</span><span class="sn">08</span></a><a class="spine t-sans " style="--bg:#2E5A3F;--fg:#F1EBDD;--h:235px;--w:48px" href="https://www.latent.space" target="_blank" rel="noopener" data-n="Latent Space" data-d="AI 工程每日动态" data-k="一手长文"><span class="st">Latent Space</span><span class="sn">09</span></a><a class="spine t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:290px;--w:60px" href="https://www.dwarkesh.com" target="_blank" rel="noopener" data-n="Dwarkesh Podcast" data-d="长访谈，附完整文字稿" data-k="一手长文"><span class="st">Dwarkesh Podcast</span><span class="sn">10</span></a></div><div class="baylab"><span>Long Reads</span><span>一手长文 · 10</span></div></div><div class="bay"><div class="books"><a class="spine t-cond " style="--bg:#222222;--fg:#F3EFE6;--h:235px;--w:48px" href="https://www.youtube.com/@LatentSpacePod" target="_blank" rel="noopener" data-n="Latent Space" data-d="播客" data-k="播客"><span class="st">Latent Space</span><span class="sn">11</span></a><a class="spine t-cond lean" style="--bg:#D6D4CE;--fg:#111111;--h:231px;--w:51px" href="https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8" target="_blank" rel="noopener" data-n="Training Data" data-d="播客" data-k="播客"><span class="st">Training Data</span><span class="sn">12</span></a><a class="spine t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:230px;--w:39px" href="https://www.youtube.com/@NoPriorsPodcast" target="_blank" rel="noopener" data-n="No Priors" data-d="播客" data-k="播客"><span class="st">No Priors</span><span class="sn">13</span></a><a class="spine t-serif face" style="--bg:#3E1E22;--fg:#E9B23A;--h:176px;--w:124px" href="https://www.youtube.com/@RedpointAI" target="_blank" rel="noopener" data-n="Unsupervised Learning" data-d="播客" data-k="播客"><span class="fc"><span class="fk">播客</span><span class="ft">Unsupervised Learning</span><span class="fd">播客</span></span></a><a class="spine t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:302px;--w:57px" href="https://www.youtube.com/@DataDrivenNYC" target="_blank" rel="noopener" data-n="The MAD Podcast" data-d="播客" data-k="播客"><span class="st">The MAD Podcast</span><span class="sn">15</span></a><a class="spine t-serif " style="--bg:#F6F2EA;--fg:#1F2A55;--h:196px;--w:56px" href="https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL" target="_blank" rel="noopener" data-n="AI &amp; I" data-d="播客" data-k="播客"><span class="st">AI &amp; I</span><span class="sn">16</span></a><a class="spine t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:303px;--w:56px" href="https://allin.com" target="_blank" rel="noopener" data-n="All-In" data-d="播客" data-k="播客"><span class="st">All-In</span><span class="sn">17</span></a><a class="spine t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:253px;--w:62px" href="https://www.acquired.fm" target="_blank" rel="noopener" data-n="Acquired" data-d="播客" data-k="播客"><span class="st">Acquired</span><span class="sn">18</span></a><div class="spine t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:234px;--w:47px" data-n="BG2" data-d="播客" data-k="播客"><span class="st">BG2</span><span class="sn">19</span></div></div><div class="baylab"><span>Podcasts</span><span>播客 · 9</span></div></div><div class="bay"><div class="books"><a class="spine t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:300px;--w:45px" href="https://openai.com/news/" target="_blank" rel="noopener" data-n="OpenAI News" data-d="模型发布、收购、研究" data-k="官方一手"><span class="st">OpenAI News</span><span class="sn">20</span></a><a class="spine t-sans lean" style="--bg:#2E5A3F;--fg:#F1EBDD;--h:294px;--w:46px" href="https://deepmind.google/blog/" target="_blank" rel="noopener" data-n="Google DeepMind Blog" data-d="研究与 Gemini 发布" data-k="官方一手"><span class="st">Google DeepMind Blog</span><span class="sn">21</span></a><a class="spine t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:222px;--w:54px" href="https://www.anthropic.com/news" target="_blank" rel="noopener" data-n="Anthropic News" data-d="Claude 发布与公司公告" data-k="官方一手"><span class="st">Anthropic News</span><span class="sn">22</span></a><a class="spine t-cond face" style="--bg:#222222;--fg:#F3EFE6;--h:176px;--w:124px" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener" data-n="Anthropic Engineering" data-d="工程深度文章" data-k="官方一手"><span class="fc"><span class="fk">官方一手</span><span class="ft">Anthropic Engineering</span><span class="fd">工程深度文章</span></span></a><div class="spine t-heavy " style="--bg:#D6D4CE;--fg:#111111;--h:197px;--w:59px" data-n="财报与监管文件" data-d="Tesla 等公司的一手披露" data-k="官方一手"><span class="st">财报与监管文件</span><span class="sn">24</span></div></div><div class="baylab"><span>Primary</span><span>官方一手 · 5</span></div></div></div>
+    <div style="text-align:center"><a class="teaser" id="teaser" href="#daily" data-open="daily" hidden><span class="tl"></span><span class="tg">今日早报 →</span></a></div>
+    <div class="shelf"><div class="bay one"><div class="books"><a class="spine k-reads t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:293px;--w:38px" href="https://simonwillison.net" target="_blank" rel="noopener" data-n="Simon Willison" data-d="新模型与工具的实测笔记" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Simon Willison</span><span class="sn">01</span></a><a class="spine k-reads t-serif " style="--bg:#3E1E22;--fg:#E9B23A;--h:246px;--w:32px" href="https://www.oneusefulthing.org" target="_blank" rel="noopener" data-n="One Useful Thing" data-d="Ethan Mollick：AI 与工作，附数据" data-k="一手长文"><span class="mk mk-r"></span><span class="st">One Useful Thing</span><span class="sn">02</span></a><a class="spine k-reads t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:225px;--w:35px" href="https://www.interconnects.ai" target="_blank" rel="noopener" data-n="Interconnects" data-d="Nathan Lambert：开源模型与后训练" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Interconnects</span><span class="sn">03</span></a><a class="spine k-reads t-serif face" style="--bg:#F6F2EA;--fg:#1F2A55;--h:180px;--w:104px" href="https://importai.substack.com" target="_blank" rel="noopener" data-n="Import AI" data-d="Jack Clark：每周前沿研究" data-k="一手长文"><span class="fc"><span class="fk">一手长文</span><span class="ft">Import AI</span><span class="fd">Jack Clark：每周前沿研究</span></span></a><a class="spine k-reads t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:245px;--w:32px" href="https://hamel.dev" target="_blank" rel="noopener" data-n="Hamel Husain" data-d="AI 产品评估方法" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Hamel Husain</span><span class="sn">05</span></a><a class="spine k-reads t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:203px;--w:38px" href="https://eugeneyan.com" target="_blank" rel="noopener" data-n="Eugene Yan" data-d="LLM 系统落地模式" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Eugene Yan</span><span class="sn">06</span></a><a class="spine k-reads t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:238px;--w:32px" href="https://newsletter.semianalysis.com" target="_blank" rel="noopener" data-n="SemiAnalysis" data-d="芯片、数据中心、算力供应链" data-k="一手长文"><span class="mk mk-r"></span><span class="st">SemiAnalysis</span><span class="sn">07</span></a><a class="spine k-reads t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:268px;--w:38px" href="https://www.lennysnewsletter.com" target="_blank" rel="noopener" data-n="Lenny&#x27;s Newsletter" data-d="产品方法论与 How I AI" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Lenny&#x27;s Newsletter</span><span class="sn">08</span></a><a class="spine k-reads t-sans " style="--bg:#2E5A3F;--fg:#F1EBDD;--h:280px;--w:32px" href="https://www.latent.space" target="_blank" rel="noopener" data-n="Latent Space" data-d="AI 工程每日动态" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Latent Space</span><span class="sn">09</span></a><a class="spine k-reads t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:246px;--w:32px" href="https://www.dwarkesh.com" target="_blank" rel="noopener" data-n="Dwarkesh Podcast" data-d="长访谈，附完整文字稿" data-k="一手长文"><span class="mk mk-r"></span><span class="st">Dwarkesh Podcast</span><span class="sn">10</span></a><span class="bookend" aria-hidden="true"><span>Podcasts</span></span><a class="spine k-pods t-cond " style="--bg:#222222;--fg:#F3EFE6;--h:280px;--w:32px" href="https://www.youtube.com/@LatentSpacePod" target="_blank" rel="noopener" data-n="Latent Space" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">Latent Space</span><span class="sn">11</span></a><a class="spine k-pods t-serif " style="--bg:#D6D4CE;--fg:#111111;--h:266px;--w:35px" href="https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8" target="_blank" rel="noopener" data-n="Training Data" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">Training Data</span><span class="sn">12</span></a><a class="spine k-pods t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:220px;--w:35px" href="https://www.youtube.com/@NoPriorsPodcast" target="_blank" rel="noopener" data-n="No Priors" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">No Priors</span><span class="sn">13</span></a><a class="spine k-pods t-serif " style="--bg:#3E1E22;--fg:#E9B23A;--h:301px;--w:35px" href="https://www.youtube.com/@RedpointAI" target="_blank" rel="noopener" data-n="Unsupervised Learning" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">Unsupervised Learning</span><span class="sn">14</span></a><a class="spine k-pods t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:267px;--w:41px" href="https://www.youtube.com/@DataDrivenNYC" target="_blank" rel="noopener" data-n="The MAD Podcast" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">The MAD Podcast</span><span class="sn">15</span></a><a class="spine k-pods t-serif " style="--bg:#F6F2EA;--fg:#1F2A55;--h:291px;--w:38px" href="https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL" target="_blank" rel="noopener" data-n="AI &amp; I" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">AI &amp; I</span><span class="sn">16</span></a><a class="spine k-pods t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:263px;--w:38px" href="https://allin.com" target="_blank" rel="noopener" data-n="All-In" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">All-In</span><span class="sn">17</span></a><a class="spine k-pods t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:298px;--w:32px" href="https://www.acquired.fm" target="_blank" rel="noopener" data-n="Acquired" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">Acquired</span><span class="sn">18</span></a><div class="spine k-pods t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:209px;--w:41px" data-n="BG2" data-d="播客" data-k="播客"><span class="mk mk-p"></span><span class="st">BG2</span><span class="sn">19</span></div><span class="bookend" aria-hidden="true"><span>Primary</span></span><a class="spine k-official t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:295px;--w:41px" href="https://openai.com/news/" target="_blank" rel="noopener" data-n="OpenAI News" data-d="模型发布、收购、研究" data-k="官方一手"><span class="st">OpenAI News</span><span class="mk-o">OFFICIAL</span></a><a class="spine k-official t-sans " style="--bg:#2E5A3F;--fg:#F1EBDD;--h:290px;--w:32px" href="https://deepmind.google/blog/" target="_blank" rel="noopener" data-n="Google DeepMind Blog" data-d="研究与 Gemini 发布" data-k="官方一手"><span class="st">Google DeepMind Blog</span><span class="mk-o">OFFICIAL</span></a><a class="spine k-official t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:267px;--w:38px" href="https://www.anthropic.com/news" target="_blank" rel="noopener" data-n="Anthropic News" data-d="Claude 发布与公司公告" data-k="官方一手"><span class="st">Anthropic News</span><span class="mk-o">OFFICIAL</span></a><a class="spine k-official t-cond " style="--bg:#222222;--fg:#F3EFE6;--h:301px;--w:35px" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener" data-n="Anthropic Engineering" data-d="工程深度文章" data-k="官方一手"><span class="st">Anthropic Engineering</span><span class="mk-o">OFFICIAL</span></a><div class="spine k-official t-serif " style="--bg:#D6D4CE;--fg:#111111;--h:252px;--w:41px" data-n="财报与监管文件" data-d="Tesla 等公司的一手披露" data-k="官方一手"><span class="st">财报与监管文件</span><span class="mk-o">OFFICIAL</span></div></div><div class="baylab legend2"><span><i class="lg lg-r"></i>一手长文 · 10</span><span><i class="lg lg-p"></i>播客 · 9</span><span><i class="lg lg-o"></i>官方一手 · 5</span></div></div></div>
     <div class="shelfcap" id="cap" aria-live="polite"><span class="cn">24 本书，一手长文、播客与官方渠道</span><span class="cd">悬停书脊查看，点击打开</span></div>
     <div class="herofoot cap"><span>Scroll to explore</span><span id="counter">01 — 03</span></div>
   </div>
@@ -323,19 +385,16 @@ body.lock{overflow:hidden}
     <div class="legend cap"><span>26 daily via follow-builders</span><span>Pending = 接入中</span></div>
   </section>
 
-  <section class="s" id="rules" data-idx="03">
-    <div class="shead"><div><div class="cap" style="color:var(--mute)">03 — House Rules</div><h2>Closer to source</h2></div><span class="cap" style="color:var(--mute)">越靠近源头，权重越高</span></div>
-    <ol class="rules">
-      <li><span class="rn">01</span><div class="rbody"><div class="rbar" style="--c:var(--orange);--wd:100%"></div><span class="rt"><span class="zh">一手经验分享</span></span><span class="rd">builder 本人的帖子、博客与访谈，写自己做了什么、踩了什么坑。</span></div></li>
-      <li><span class="rn">02</span><div class="rbody"><div class="rbar" style="--c:var(--cobalt);--wd:62%"></div><span class="rt"><span class="zh">官方一手发布</span></span><span class="rd">模型与产品发布、收购、研究、财报与监管文件。</span></div></li>
-      <li><span class="rn">03</span><div class="rbody"><div class="rbar" style="--c:var(--pink);--wd:22%"></div><span class="rt"><span class="zh">媒体报道</span></span><span class="rd">找不到一手来源时才用，每天最多三条，只收硬事实。</span></div></li>
-    </ol>
-    <div class="never"><span class="cap">Never</span><span>观点评论稿、软文与赞助内容、客户案例故事、榜单盘点、聚合站、纯转发。当天没有够格的内容，就少放。</span></div>
-    <div class="fmt">
-      <div class="f1"><span class="cap">Section 1</span><b>Builders 在说什么</b><span>过去 24 小时值得读的帖子</span></div>
-      <div class="f2"><span class="cap">Section 2</span><b>一手长文与播客</b><span>论点与数据，附原文</span></div>
-      <div class="f3"><span class="cap">Section 3</span><b>典型事实</b><span>AI 与汽车、机器人、芯片、能源</span></div>
+  <section class="s rules-s" id="rules" data-idx="03">
+    <div class="rl">
+      <div class="rl-t"><div class="cap" style="color:var(--mute)">03 — House Rules</div><h2 class="rl-h">Closer to source</h2><p class="rl-d">越靠近源头，权重越高。</p></div>
+      <ol class="rl-list">
+        <li><i style="--c:var(--orange);--w:100%"></i><b>一手经验</b><span>builder 本人的帖子、博客与访谈</span></li>
+        <li><i style="--c:var(--cobalt);--w:62%"></i><b>官方发布</b><span>发布、收购、研究、财报与监管文件</span></li>
+        <li><i style="--c:var(--pink);--w:22%"></i><b>媒体报道</b><span>仅补硬事实，每天最多三条</span></li>
+      </ol>
     </div>
+    <p class="rl-never"><span class="cap">Never</span>观点稿、软文、客户案例、榜单盘点、聚合站、纯转发</p>
   </section>
 
 
@@ -348,28 +407,16 @@ body.lock{overflow:hidden}
 <div class="dov" id="dov" hidden></div>
 <aside class="drawer" id="daily" role="dialog" aria-modal="true" aria-label="Frontier 早报" aria-hidden="true" tabindex="-1">
   <div class="dbar"><div><div class="cap" style="color:var(--mute)">Frontier Daily · 每天 07:41 出刊</div><div class="dtitle">今日早报</div></div><button type="button" class="pill" id="dclose" aria-label="关闭">Close ✕</button></div>
+  <div class="ticker" id="ticker" aria-label="AI 温度计"></div>
+  <div class="wk">
+    <div class="wk-h"><div class="mtitle" id="mtitle">—</div>
+      <div class="wk-ctl"><button type="button" class="pill" id="mode" aria-pressed="false">月历</button><div class="mnav"><button type="button" id="prev" aria-label="上一页">‹</button><button type="button" id="next" aria-label="下一页">›</button></div></div></div>
+    <div class="dow cap" id="dow"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+    <div class="days" id="days"></div>
+  </div>
   <div class="dwrap">
-      <aside class="dcal">
-        <div class="mhead"><div class="mtitle" id="mtitle">—</div><div class="mnav"><button type="button" id="prev" aria-label="上个月">‹</button><button type="button" id="next" aria-label="下个月">›</button></div></div>
-        <div class="dow cap"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
-        <div class="days" id="days"></div>
-        <p class="dleg">彩色书脊是出过刊的日子，点一下翻到那一期。</p>
-        <div class="recent" id="recent"></div>
-      </aside>
       <div class="dmain" id="dmain"><div class="dstate"><b>Loading</b>正在取出这一期</div></div>
     </div>
-  <section class="pulse" id="revenue">
-    <div class="shead">
-      <div><div class="cap" style="color:var(--mute)">Data Pulse · 数据看板</div><h2>AI Demand Curve</h2><p class="pl-lede">固定追踪的公开数据，每个数字都能点回出处。</p></div>
-      <div class="modes" role="group" aria-label="坐标"><button type="button" class="pill rv-sc" data-sc="lin" aria-pressed="true">Linear</button><button type="button" class="pill rv-sc" data-sc="log" aria-pressed="false">Log</button></div>
-    </div>
-    <div class="pl-grid" id="pl-grid"></div>
-    <h3 class="pl-h">Anthropic vs OpenAI 年化营收</h3>
-    <div class="rv-stats" id="rv-stats"></div>
-    <div class="rv-chart"><svg id="rv-svg" role="img" aria-label="Anthropic 与 OpenAI 年化营收曲线"></svg><div class="rv-tip" id="rv-tip" hidden></div></div>
-    <p class="rv-note" id="rv-note"></p>
-    <details class="rv-src"><summary class="cap">数据点与来源</summary><div class="rv-tbl" id="rv-tbl"></div></details>
-  </section>
 
 </aside>
 <script>
@@ -432,16 +479,24 @@ var index=[],dates={},view=null,cur=null,full=false,data=null;
   function md(ds){var d=parse(ds);return (d.getUTCMonth()+1)+'.'+String(d.getUTCDate()).padStart(2,'0')}
   function safe(u){return /^https?:\/\//.test(u||'')?u:null}
   function state(t,s){var d=el('div','dstate');d.append(el('b',null,t),document.createTextNode(s));document.getElementById('dmain').replaceChildren(d)}
+  var mode='week';
+  function fmt(d){return d.toISOString().slice(0,10)}
   function cal(){
-    var y=view.y,m=view.m,first=new Date(Date.UTC(y,m,1)),n=new Date(Date.UTC(y,m+1,0)).getUTCDate();
-    document.getElementById('mtitle').replaceChildren(document.createTextNode(String(m+1).padStart(2,'0')),el('small',null,String(y)));
-    var box=document.getElementById('days');box.replaceChildren();var lead=(first.getUTCDay()+6)%7,td=today();
-    for(var i=0;i<lead;i++)box.append(el('span','day blank'));
-    for(var d=1;d<=n;d++){(function(ds){var has=!!dates[ds],c=el(has?'button':'span','day'+(has?' has':'')+(ds===td?' today':'')+(cur===ds?' sel':''));c.append(el('span',null,String(+ds.slice(8))));
-      if(has){var p=pal(ds);c.style.setProperty('--c',p[0]);c.style.setProperty('--t',p[1]);c.type='button';c.setAttribute('aria-label',ds+' 早报');c.append(el('i'));c.addEventListener('click',function(){go(ds,true)})}
-      box.append(c)})(y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'))}
-    var ms=index.map(function(x){return x.date.slice(0,7)}),k=y+'-'+String(m+1).padStart(2,'0');
-    document.getElementById('prev').disabled=!ms.length||k<=ms[ms.length-1];document.getElementById('next').disabled=!ms.length||k>=ms[0];
+    var box=document.getElementById('days');box.replaceChildren();var td=today(),list=[];
+    var a=parse(view);
+    if(mode==='week'){var mon=new Date(a.getTime()-((a.getUTCDay()+6)%7)*864e5);for(var i=0;i<7;i++)list.push(new Date(mon.getTime()+i*864e5));
+      var wk=Math.ceil((mon.getUTCDate()+((new Date(Date.UTC(mon.getUTCFullYear(),mon.getUTCMonth(),1)).getUTCDay()+6)%7))/7);
+      document.getElementById('mtitle').replaceChildren(document.createTextNode((mon.getUTCMonth()+1)+'月'),el('small',null,'第 '+wk+' 周 · '+mon.getUTCFullYear()));}
+    else{var y=a.getUTCFullYear(),m=a.getUTCMonth(),first=new Date(Date.UTC(y,m,1)),n=new Date(Date.UTC(y,m+1,0)).getUTCDate(),lead=(first.getUTCDay()+6)%7;
+      for(var i=0;i<lead;i++)list.push(null);for(var d=1;d<=n;d++)list.push(new Date(Date.UTC(y,m,d)));
+      document.getElementById('mtitle').replaceChildren(document.createTextNode((m+1)+'月'),el('small',null,String(y)));}
+    box.className='days '+mode;
+    list.forEach(function(dt){if(!dt){box.append(el('span','day blank'));return}var ds=fmt(dt),has=!!dates[ds];
+      var c=el(has?'button':'span','day'+(has?' has':'')+(ds===td?' today':'')+(cur===ds?' sel':''));c.append(el('span','dn',String(dt.getUTCDate())));
+      if(mode==='week'){c.append(el('span','dw',WK[dt.getUTCDay()]));var x=index.find(function(q){return q.date===ds});c.append(el('span','dh',x?(x.count+' 条'):(ds>td?'':'—')))}
+      if(has){var p=pal(ds);c.style.setProperty('--c',p[0]);c.style.setProperty('--t',p[1]);c.type='button';c.setAttribute('aria-label',ds+' 早报');c.addEventListener('click',function(){go(ds,true)})}
+      box.append(c)});
+    document.getElementById('mode').textContent=mode==='week'?'月历':'本周';document.getElementById('mode').setAttribute('aria-pressed',mode==='month'?'true':'false');
   }
   function recent(){var r=document.getElementById('recent');r.replaceChildren();index.slice(0,6).forEach(function(x){var a=el('a',x.date===cur?'on':'');a.href='#'+x.date;var d=parse(x.date),dd=el('div','rd',md(x.date));dd.append(el('small',null,WK[d.getUTCDay()]));a.append(dd,el('div','rh',x.headline||''));a.addEventListener('click',function(e){e.preventDefault();go(x.date,true)});r.append(a)})}
   function item(it,sid){var a=el('article','item'),p=SEC[sid]||PAL[0];a.style.setProperty('--c',p[0]);a.style.setProperty('--t',p[1]);
@@ -463,15 +518,17 @@ var index=[],dates={},view=null,cur=null,full=false,data=null;
     if(!full&&shown<total){var mo=el('div','more'),b=el('button',null,'展开全部');b.type='button';b.append(el('span',null,total+' 条'));b.addEventListener('click',function(){full=true;render()});mo.append(b);m.append(mo)}
     if(d.question){var qs=el('div','qs');qs.append(el('div','cap','Question of the day · 今日一问'),el('h3',null,d.question));m.append(qs)}
   }
-  function go(ds,scroll){cur=ds;full=false;var dt=parse(ds);view={y:dt.getUTCFullYear(),m:dt.getUTCMonth()};cal();recent();
+  function go(ds,scroll){cur=ds;full=false;view=ds;cal();
     if(scroll&&location.hash!=='#'+ds)history.replaceState(null,'','#'+ds);state('Loading','正在取出这一期');
     fetch('briefs/'+ds+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(cur!==ds)return;data=d;render();document.getElementById('daily').scrollTop=0}).catch(function(){state('Not found','这一期暂时取不到，刷新再试')})}
-  document.getElementById('prev').addEventListener('click',function(){view.m--;if(view.m<0){view.m=11;view.y--}cal()});
-  document.getElementById('next').addEventListener('click',function(){view.m++;if(view.m>11){view.m=0;view.y++}cal()});
+  function shift(k){var a=parse(view);if(mode==='week')a=new Date(a.getTime()+k*7*864e5);else a=new Date(Date.UTC(a.getUTCFullYear(),a.getUTCMonth()+k,1));view=fmt(a);cal()}
+  document.getElementById('prev').addEventListener('click',function(){shift(-1)});
+  document.getElementById('mode').addEventListener('click',function(){mode=mode==='week'?'month':'week';cal()});
+  document.getElementById('next').addEventListener('click',function(){shift(1)});
   window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(dates[h]){if(h!==cur)go(h,true);openD()}});
   fetch('briefs/index.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(list){
     index=list.sort(function(a,b){return a.date<b.date?1:-1});index.forEach(function(x){dates[x.date]=1});
-    if(!index.length){var t=parse(today());view={y:t.getUTCFullYear(),m:t.getUTCMonth()};cal();state('Soon','第一期明早 07:41 出刊');return}
+    if(!index.length){view=today();cal();state('Soon','第一期明早 07:41 出刊');return}
     var t=document.getElementById('teaser');if(t){t.href='#daily';t.querySelector('.tl').textContent=md(index[0].date)+' · '+index[0].headline;t.hidden=false}
     var h=location.hash.slice(1);go(dates[h]?h:index[0].date,false);if(dates[h]||h==='daily')openD();
   }).catch(function(){state('Offline','目录读取失败，刷新再试')});
@@ -480,68 +537,29 @@ var index=[],dates={},view=null,cur=null,full=false,data=null;
 </script>
 <script>
 (function(){
-  var svg=document.getElementById('rv-svg'),tip=document.getElementById('rv-tip'),NS='http://www.w3.org/2000/svg',D=null,scale='lin';
-  function s(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);return e}
-  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
-  function mi(d){var p=d.split('-');return (+p[0])*12+(+p[1]-1)}
-  function lab(m){return String(Math.floor(m/12)).slice(2)+'.'+String(m%12+1).padStart(2,'0')}
-  function draw(){
-    var W=1000,H=420,L=56,R=24,T=20,B=40;svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.replaceChildren();
-    var all=[];D.series.forEach(function(se){se.points.forEach(function(p){all.push(p)})});
-    var x0=Math.min.apply(null,all.map(function(p){return mi(p.date)}))-1,x1=Math.max.apply(null,all.map(function(p){return mi(p.date)}))+1;
-    var vmax=Math.max.apply(null,all.map(function(p){return p.value}));
-    var ticks,fy;
-    if(scale==='log'){var lo=0.5,hi=Math.pow(10,Math.ceil(Math.log10(vmax*1.1)));ticks=[1,2,5,10,20,50,100,200].filter(function(t){return t<=hi});fy=function(v){return T+(H-T-B)*(1-(Math.log10(v)-Math.log10(lo))/(Math.log10(hi)-Math.log10(lo)))}}
-    else{var top=Math.ceil(vmax*1.15/10)*10;ticks=[];for(var t=0;t<=top;t+=top>60?20:10)ticks.push(t);fy=function(v){return T+(H-T-B)*(1-v/top)}}
-    var fx=function(m){return L+(W-L-R)*(m-x0)/(x1-x0)};
-    ticks.forEach(function(t){var y=fy(t);svg.append(s('line',{x1:L,x2:W-R,y1:y,y2:y,stroke:'#CFCBC4','stroke-width':1}));var tx=s('text',{x:L-10,y:y+4,'text-anchor':'end','font-size':12,fill:'#6E6862','font-family':'Geist Mono, monospace'});tx.textContent='$'+t+'B';svg.append(tx)});
-    for(var m=x0+1;m<x1;m++){if(m%3!==0)continue;var x=fx(m);svg.append(s('line',{x1:x,x2:x,y1:H-B,y2:H-B+5,stroke:'#141110'}));var tx=s('text',{x:x,y:H-B+20,'text-anchor':'middle','font-size':12,fill:'#6E6862','font-family':'Geist Mono, monospace'});tx.textContent=lab(m);svg.append(tx)}
-    svg.append(s('line',{x1:L,x2:W-R,y1:H-B,y2:H-B,stroke:'#141110','stroke-width':1.5}));
-    D.series.forEach(function(se){
-      var pts=se.points.map(function(p){return [fx(mi(p.date)),fy(p.value),p]});
-      var d=pts.map(function(q,i){return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' ');
-      svg.append(s('path',{d:d+' L'+pts[pts.length-1][0]+' '+(H-B)+' L'+pts[0][0]+' '+(H-B)+' Z',fill:se.color,'fill-opacity':0.08}));
-      svg.append(s('path',{d:d,fill:'none',stroke:se.color,'stroke-width':3,'stroke-linejoin':'round','stroke-linecap':'round'}));
-      pts.forEach(function(q,i){var last=i===pts.length-1,c=s('circle',{cx:q[0],cy:q[1],r:last?7:5,fill:last?se.color:'#F7F5F1',stroke:se.color,'stroke-width':2.5,tabindex:0,style:'cursor:pointer'});
-        function on(){var r=svg.getBoundingClientRect(),k=r.width/W;tip.replaceChildren(el('div','cap',se.name+' · '+q[2].date),el('b',null,'$'+q[2].value+'B'),el('div',null,q[2].src));tip.style.left=(q[0]*k+8)+'px';tip.style.top=(q[1]*k+12)+'px';tip.hidden=false}
-        c.addEventListener('mouseenter',on);c.addEventListener('focus',on);c.addEventListener('mouseleave',function(){tip.hidden=true});c.addEventListener('blur',function(){tip.hidden=true});
-        c.addEventListener('click',function(){window.open(q[2].url,'_blank','noopener')});svg.append(c);
-        if(last){var tx=s('text',{x:q[0]-12,y:q[1]-14,'text-anchor':'end','font-size':15,fill:se.color,'font-weight':600,'font-family':'Geist, sans-serif'});tx.textContent=se.name+' $'+q[2].value+'B';svg.append(tx)}});
-    });
-  }
-  function stats(){var box=document.getElementById('rv-stats');box.replaceChildren();
-    D.series.forEach(function(se){var p=se.points,l=p[p.length-1],t=mi(l.date)-12,base=null;p.forEach(function(q){if(mi(q.date)<=t)base=q});
-      var c=el('div','rv-card');c.style.setProperty('--c',se.color);var v=el('div','v','$'+l.value);v.append(el('small',null,'B'));
-      c.append(el('div','cap',se.name+' · '+l.date),v,el('div','d',base?('约为 '+base.date+' 的 '+(l.value/base.value).toFixed(1)+' 倍'):'年化营收'));box.append(c)});
-    var a=D.series[0].points,o=D.series[1].points,c=el('div','rv-card');c.style.setProperty('--c','#141110');
-    var al=a[a.length-1],ol=o[o.length-1];c.append(el('div','cap','Latest gap'),el('div','v',(al.value/ol.value).toFixed(2)+'×'),el('div','d','Anthropic ÷ OpenAI，按各自最新披露（时间点不同）'));box.append(c);
-    document.getElementById('rv-note').textContent=D.note+' 最近更新：'+D.updatedAt+'，每月更新一次。';
-    var tb=el('table'),h=el('tr');['公司','月份','年化营收','来源'].forEach(function(x){h.append(el('th',null,x))});tb.append(h);
-    D.series.forEach(function(se){se.points.slice().reverse().forEach(function(q){var r=el('tr');r.append(el('td',null,se.name),el('td',null,q.date),el('td',null,'$'+q.value+'B'));var td=el('td'),a=el('a',null,q.src);a.href=q.url;a.target='_blank';a.rel='noopener';td.append(a);r.append(td);tb.append(r)})});
-    document.getElementById('rv-tbl').replaceChildren(tb)}
-  document.querySelectorAll('.rv-sc').forEach(function(b){b.addEventListener('click',function(){scale=b.getAttribute('data-sc');document.querySelectorAll('.rv-sc').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});draw()})});
-  fetch('revenue.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){D=d;stats();draw()}).catch(function(){document.getElementById('rv-note').textContent='营收数据读取失败，刷新再试。'});
-})();
-</script>
-<script>
-(function(){
+  var box=document.getElementById('ticker');if(!box)return;
   function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
   var NS='http://www.w3.org/2000/svg';
-  fetch('pulse.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(d){
-    var g=document.getElementById('pl-grid');g.replaceChildren();
-    d.metrics.forEach(function(m,mi){var c=el('div','pl-card'),col=['#E8642C','#2F55B5','#2E5A3F'][mi%3];c.style.borderTop='6px solid '+col;
-      c.append(el('div','nm',m.name),el('div','sb',m.sub+' · '+m.cadence+'更新'));
-      var p=m.points||[];
-      if(p.length){var l=p[p.length-1],v=el('div','v',String(l.value));v.append(el('small',null,m.unit));c.append(v);
-        if(p.length>1){var s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 200 40');s.setAttribute('preserveAspectRatio','none');var mx=Math.max.apply(null,p.map(function(q){return q.value})),mn=Math.min.apply(null,p.map(function(q){return q.value}));
-          var path=p.map(function(q,i){return (i?'L':'M')+(i/(p.length-1)*196+2).toFixed(1)+' '+(36-(q.value-mn)/((mx-mn)||1)*32).toFixed(1)}).join(' ');var pa=document.createElementNS(NS,'path');pa.setAttribute('d',path);pa.setAttribute('fill','none');pa.setAttribute('stroke',col);pa.setAttribute('stroke-width','2.5');s.append(pa);c.append(s)}
-        if(l.note)c.append(el('div','ds',l.note));
-        var ft=el('div','ft');ft.append(el('span',null,l.date));var a=el('a',null,l.src+' ↗');a.href=l.url;a.target='_blank';a.rel='noopener';ft.append(a);c.append(ft)}
-      else{c.append(el('div','wait','首个数据点将随下一期早报更新'),el('div','ds',m.desc))}
-      g.append(c)});
-  }).catch(function(){});
+  function spark(pts,col){var s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 50 22');s.setAttribute('preserveAspectRatio','none');if(pts.length<2)return s;
+    var mx=Math.max.apply(null,pts),mn=Math.min.apply(null,pts),d=pts.map(function(v,i){return (i?'L':'M')+(i/(pts.length-1)*48+1).toFixed(1)+' '+(20-(v-mn)/((mx-mn)||1)*18).toFixed(1)}).join(' ');
+    var a=document.createElementNS(NS,'path');a.setAttribute('d',d);a.setAttribute('fill','none');a.setAttribute('stroke',col);a.setAttribute('stroke-width','1.8');s.append(a);return s}
+  function tile(label,pts,pre,unit,col){var a=el('a','tk'),n=pts.length,l=pts[n-1];a.append(el('span','l',label));
+    if(!l){a.append(el('span','v','—'),el('span','c na','待更新'),spark([],col));return a}
+    a.href=l.url;a.target='_blank';a.rel='noopener';a.title=label+' · '+l.date+' · '+l.src;
+    var v=el('span','v',pre+l.value);v.append(el('small',null,unit));a.append(v);
+    if(n>1){var q=pts[n-2],ch=(l.value-q.value)/q.value*100;a.append(el('span','c '+(ch>=0?'up':'dn2'),(ch>=0?'▲':'▼')+Math.abs(ch).toFixed(Math.abs(ch)>=100?0:1)+'% · '+l.date.slice(2)))}
+    else a.append(el('span','c na',l.date.slice(2)));
+    a.append(spark(pts.map(function(q){return q.value}),col));return a}
+  Promise.all([fetch('revenue.json',{cache:'no-cache'}).then(function(r){return r.json()}),fetch('pulse.json',{cache:'no-cache'}).then(function(r){return r.json()})]).then(function(x){
+    var S={},M={};x[0].series.forEach(function(s){S[s.id]=s.points});x[1].metrics.forEach(function(m){M[m.id]=m.points||[]});
+    var h=el('div','tk-h');h.append(el('span',null,'AI Pulse'),el('b',null,'温度计'));box.replaceChildren(h,
+      tile('ANTHROPIC 年化营收',S.anthropic||[],'$','B','#E8642C'),tile('OPENAI 年化营收',S.openai||[],'$','B','#2F55B5'),
+      tile('OPENROUTER 周 TOKENS',M.openrouter||[],'','T','#2E5A3F'),tile('NVIDIA 市值',M.nvda||[],'$','T','#141110'),tile('云厂商 CAPEX/季',M.capex||[],'$','B','#9B6FC0'));
+  }).catch(function(){box.hidden=true});
 })();
 </script>
+
+
 
 </body>
 </html>
