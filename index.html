@@ -150,6 +150,76 @@ ol.rules li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:8px 24px;a
 footer.pf{border-top:1px solid var(--line);padding:18px clamp(16px,3vw,32px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute)}
 footer.pf a{text-decoration:underline;text-underline-offset:3px}
 [hidden]{display:none!important}
+/* daily issue section */
+.dwrap{display:grid;grid-template-columns:280px minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.dcal{position:sticky;top:16px;display:flex;flex-direction:column;gap:14px}
+.mhead{display:flex;justify-content:space-between;align-items:baseline}
+.mtitle{font-family:var(--f-display);font-size:34px;line-height:1}
+.mtitle small{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;margin-left:8px;color:var(--mute)}
+.mnav{display:flex;gap:4px}
+.mnav button{width:30px;height:30px;border-radius:50%;border:1px solid var(--ink);background:none;cursor:pointer;font-size:14px;line-height:1;color:var(--ink)}
+.mnav button:disabled{opacity:.25;cursor:default}
+.dow,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.dow span{text-align:center;color:var(--mute)}
+.day{aspect-ratio:1/1.35;border:0;border-radius:3px 3px 0 0;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:5px 0 4px;font-family:var(--f-mono);font-size:11px;color:var(--mute);background:transparent;border-bottom:2px solid var(--line)}
+.day.has{background:var(--c);color:var(--t);border-bottom-color:var(--ink);cursor:pointer;box-shadow:inset -2px 0 0 rgba(0,0,0,.12);transition:transform .2s cubic-bezier(.2,.7,.2,1)}
+.day.has:hover{transform:translateY(-5px)}
+.day.has i{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.8}
+.day.sel{transform:translateY(-8px);outline:2px solid var(--ink);outline-offset:2px}
+.day.today:not(.has){border:1px dashed var(--ink);color:var(--ink)}
+.day.blank{visibility:hidden}
+.dleg{margin:0;color:var(--mute);font-size:13px}
+.recent{display:flex;flex-direction:column;border-top:1px solid var(--ink)}
+.recent a{display:grid;grid-template-columns:46px minmax(0,1fr);gap:10px;padding:9px 6px;border-bottom:1px solid var(--line)}
+.recent a.on{background:var(--paper)}
+.rd{font-family:var(--f-display);font-size:22px;line-height:1}
+.rd small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;color:var(--mute);margin-top:4px}
+.rh{font-size:13px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dmain{min-width:0}
+.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:12px}
+.dbig{font-family:var(--f-display);font-size:clamp(60px,9vw,112px);line-height:.85;letter-spacing:-.02em}
+.dbig em{font-style:italic;font-size:.45em;letter-spacing:0;margin-left:10px;vertical-align:.9em}
+.ed{text-align:right;color:var(--mute)}
+.ed b{display:block;font-family:var(--f-display);font-weight:400;font-size:22px;color:var(--ink);text-transform:none;letter-spacing:0}
+.headline{font-family:"Noto Serif SC",serif;font-weight:700;font-size:clamp(20px,2.4vw,28px);line-height:1.5;margin:24px 0 0;text-wrap:balance}
+.themes{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.themes li{background:var(--paper);border-radius:6px;padding:14px 16px;border-top:6px solid var(--c);font-size:14px;line-height:1.6}
+.themes li b{display:block;font-family:var(--f-display);font-size:24px;font-weight:400;line-height:1;margin-bottom:6px}
+.dstats{margin:12px 0 0;color:var(--mute);font-size:12px}
+.dsec{margin-top:40px}
+.dsh{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:16px}
+.dsh .no{font-family:var(--f-display);font-size:40px;line-height:.8;color:var(--c)}
+.dsh h3{font-family:"Noto Serif SC",serif;font-weight:700;font-size:22px;margin:0}
+.dsh .n{margin-left:auto;color:var(--mute)}
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.item{background:var(--paper);border-radius:6px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.item.wide{grid-column:1/-1}
+.who{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--mute)}
+.who b{color:var(--ink);font-weight:600;font-size:13px}
+.tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;padding:1px 8px;border-radius:999px;background:var(--c);color:var(--t)}
+.item h4{font-family:"Noto Serif SC",serif;font-weight:700;font-size:17px;line-height:1.5;margin:0}
+.item p{margin:0;font-size:14px}
+.q{border-left:3px solid var(--c);padding:4px 0 4px 12px}
+.q .en{font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.4;display:block}
+.q .zh{font-size:13px;color:var(--mute)}
+.sw{background:var(--panel);border-radius:4px;padding:8px 12px}
+.sw::before{content:"SO WHAT";font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--orange);margin-right:8px}
+.src{align-self:flex-start;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid currentColor;margin-top:auto}
+.src:hover{color:var(--cobalt)}
+.more{display:flex;justify-content:center;margin-top:28px}
+.more button{font:inherit;font-size:15px;font-weight:500;background:var(--ink);color:var(--panel);border:0;border-radius:999px;padding:12px 26px;cursor:pointer}
+.more button span{font-family:var(--f-mono);font-size:11px;margin-left:8px;opacity:.7}
+.qs{margin-top:40px;background:var(--ink);color:var(--panel);border-radius:6px;padding:22px clamp(18px,3vw,30px)}
+.qs h3{font-family:"Noto Serif SC",serif;font-size:20px;margin:4px 0 12px}
+.qs ol{margin:0;padding-left:1.4em;display:grid;gap:10px}
+.qs .cap{color:var(--mustard)}
+.dstate{padding:60px 0;text-align:center;color:var(--mute)}
+.dstate b{display:block;font-family:var(--f-display);font-weight:400;font-size:36px;color:var(--ink);margin-bottom:6px}
+.teaser{display:inline-flex;align-items:center;gap:12px;margin:24px auto 0;max-width:min(680px,100%);background:var(--ink);color:var(--panel);border-radius:999px;padding:8px 8px 8px 18px;text-align:left}
+.teaser .tl{font-size:14px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.teaser .tg{flex:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;background:var(--orange);color:#1B120D;border-radius:999px;padding:6px 12px}
+@media (max-width:960px){.dwrap{grid-template-columns:minmax(0,1fr)}.dcal{position:static}.recent{display:none}.items,.themes{grid-template-columns:minmax(0,1fr)}}
+
 </style>
 
 </head>
@@ -165,7 +235,7 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   <header class="bar">
     <span class="cap">Frontier · Siabuilt</span>
     <span class="cap mid">Part I</span>
-    <nav aria-label="章节"><a class="pill" href="./daily.html" style="background:var(--orange);border-color:var(--orange);color:#1B120D">Daily ↗</a><a class="pill on" href="#shelf-top" data-s="top">Shelf</a><a class="pill" href="#builders" data-s="builders">Builders</a><a class="pill" href="#rules" data-s="rules">Rules</a></nav>
+    <nav aria-label="章节"><a class="pill" href="#daily" data-s="daily" style="background:var(--orange);border-color:var(--orange);color:#1B120D">Today</a><a class="pill on" href="#shelf-top" data-s="top">Shelf</a><a class="pill" href="#builders" data-s="builders">Builders</a><a class="pill" href="#rules" data-s="rules">Rules</a></nav>
   </header>
 
   <div id="shelf-top" data-idx="01">
@@ -174,14 +244,32 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
       <h1>The Frontier<br>Curation</h1>
       <p class="lede">Frontier 早报的全部信源。只跟随在一线做产品、做模型、做硬件的人，每条消息都能回到原文。</p>
     </div>
+    <div style="text-align:center"><a class="teaser" id="teaser" href="#daily" hidden><span class="tl"></span><span class="tg">今日早报 ↓</span></a></div>
     <div class="shelf"><div class="bay"><div class="books"><a class="spine t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:222px;--w:54px" href="https://simonwillison.net" target="_blank" rel="noopener" data-n="Simon Willison" data-d="新模型与工具的实测笔记" data-k="一手长文"><span class="st">Simon Willison</span><span class="sn">01</span></a><a class="spine t-serif lean" style="--bg:#3E1E22;--fg:#E9B23A;--h:256px;--w:60px" href="https://www.oneusefulthing.org" target="_blank" rel="noopener" data-n="One Useful Thing" data-d="Ethan Mollick：AI 与工作，附数据" data-k="一手长文"><span class="st">One Useful Thing</span><span class="sn">02</span></a><a class="spine t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:270px;--w:51px" href="https://www.interconnects.ai" target="_blank" rel="noopener" data-n="Interconnects" data-d="Nathan Lambert：开源模型与后训练" data-k="一手长文"><span class="st">Interconnects</span><span class="sn">03</span></a><a class="spine t-serif face" style="--bg:#F6F2EA;--fg:#1F2A55;--h:176px;--w:124px" href="https://importai.substack.com" target="_blank" rel="noopener" data-n="Import AI" data-d="Jack Clark：每周前沿研究" data-k="一手长文"><span class="fc"><span class="fk">一手长文</span><span class="ft">Import AI</span><span class="fd">Jack Clark：每周前沿研究</span></span></a><a class="spine t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:200px;--w:48px" href="https://hamel.dev" target="_blank" rel="noopener" data-n="Hamel Husain" data-d="AI 产品评估方法" data-k="一手长文"><span class="st">Hamel Husain</span><span class="sn">05</span></a><a class="spine t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:253px;--w:42px" href="https://eugeneyan.com" target="_blank" rel="noopener" data-n="Eugene Yan" data-d="LLM 系统落地模式" data-k="一手长文"><span class="st">Eugene Yan</span><span class="sn">06</span></a><a class="spine t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:203px;--w:48px" href="https://newsletter.semianalysis.com" target="_blank" rel="noopener" data-n="SemiAnalysis" data-d="芯片、数据中心、算力供应链" data-k="一手长文"><span class="st">SemiAnalysis</span><span class="sn">07</span></a><a class="spine t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:296px;--w:40px" href="https://www.lennysnewsletter.com" target="_blank" rel="noopener" data-n="Lenny&#x27;s Newsletter" data-d="产品方法论与 How I AI" data-k="一手长文"><span class="st">Lenny&#x27;s Newsletter</span><span class="sn">08</span></a><a class="spine t-sans " style="--bg:#2E5A3F;--fg:#F1EBDD;--h:235px;--w:48px" href="https://www.latent.space" target="_blank" rel="noopener" data-n="Latent Space" data-d="AI 工程每日动态" data-k="一手长文"><span class="st">Latent Space</span><span class="sn">09</span></a><a class="spine t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:290px;--w:60px" href="https://www.dwarkesh.com" target="_blank" rel="noopener" data-n="Dwarkesh Podcast" data-d="长访谈，附完整文字稿" data-k="一手长文"><span class="st">Dwarkesh Podcast</span><span class="sn">10</span></a></div><div class="baylab"><span>Long Reads</span><span>一手长文 · 10</span></div></div><div class="bay"><div class="books"><a class="spine t-cond " style="--bg:#222222;--fg:#F3EFE6;--h:235px;--w:48px" href="https://www.youtube.com/@LatentSpacePod" target="_blank" rel="noopener" data-n="Latent Space" data-d="播客" data-k="播客"><span class="st">Latent Space</span><span class="sn">11</span></a><a class="spine t-cond lean" style="--bg:#D6D4CE;--fg:#111111;--h:231px;--w:51px" href="https://www.youtube.com/playlist?list=PLOhHNjZItNnMm5tdW61JpnyxeYH5NDDx8" target="_blank" rel="noopener" data-n="Training Data" data-d="播客" data-k="播客"><span class="st">Training Data</span><span class="sn">12</span></a><a class="spine t-cond " style="--bg:#E8642C;--fg:#1B120D;--h:230px;--w:39px" href="https://www.youtube.com/@NoPriorsPodcast" target="_blank" rel="noopener" data-n="No Priors" data-d="播客" data-k="播客"><span class="st">No Priors</span><span class="sn">13</span></a><a class="spine t-serif face" style="--bg:#3E1E22;--fg:#E9B23A;--h:176px;--w:124px" href="https://www.youtube.com/@RedpointAI" target="_blank" rel="noopener" data-n="Unsupervised Learning" data-d="播客" data-k="播客"><span class="fc"><span class="fk">播客</span><span class="ft">Unsupervised Learning</span><span class="fd">播客</span></span></a><a class="spine t-serif " style="--bg:#1F2A55;--fg:#F3EFE6;--h:302px;--w:57px" href="https://www.youtube.com/@DataDrivenNYC" target="_blank" rel="noopener" data-n="The MAD Podcast" data-d="播客" data-k="播客"><span class="st">The MAD Podcast</span><span class="sn">15</span></a><a class="spine t-serif " style="--bg:#F6F2EA;--fg:#1F2A55;--h:196px;--w:56px" href="https://www.youtube.com/playlist?list=PLuMcoKK9mKgHtW_o9h5sGO2vXrffKHwJL" target="_blank" rel="noopener" data-n="AI &amp; I" data-d="播客" data-k="播客"><span class="st">AI &amp; I</span><span class="sn">16</span></a><a class="spine t-sans " style="--bg:#2F55B5;--fg:#FFFFFF;--h:303px;--w:56px" href="https://allin.com" target="_blank" rel="noopener" data-n="All-In" data-d="播客" data-k="播客"><span class="st">All-In</span><span class="sn">17</span></a><a class="spine t-serif " style="--bg:#C9A6E0;--fg:#1B120D;--h:253px;--w:62px" href="https://www.acquired.fm" target="_blank" rel="noopener" data-n="Acquired" data-d="播客" data-k="播客"><span class="st">Acquired</span><span class="sn">18</span></a><div class="spine t-serif " style="--bg:#E9B23A;--fg:#2A1D16;--h:234px;--w:47px" data-n="BG2" data-d="播客" data-k="播客"><span class="st">BG2</span><span class="sn">19</span></div></div><div class="baylab"><span>Podcasts</span><span>播客 · 9</span></div></div><div class="bay"><div class="books"><a class="spine t-sans " style="--bg:#F2A7C3;--fg:#1B120D;--h:300px;--w:45px" href="https://openai.com/news/" target="_blank" rel="noopener" data-n="OpenAI News" data-d="模型发布、收购、研究" data-k="官方一手"><span class="st">OpenAI News</span><span class="sn">20</span></a><a class="spine t-sans lean" style="--bg:#2E5A3F;--fg:#F1EBDD;--h:294px;--w:46px" href="https://deepmind.google/blog/" target="_blank" rel="noopener" data-n="Google DeepMind Blog" data-d="研究与 Gemini 发布" data-k="官方一手"><span class="st">Google DeepMind Blog</span><span class="sn">21</span></a><a class="spine t-cond " style="--bg:#D9373B;--fg:#FFF3EA;--h:222px;--w:54px" href="https://www.anthropic.com/news" target="_blank" rel="noopener" data-n="Anthropic News" data-d="Claude 发布与公司公告" data-k="官方一手"><span class="st">Anthropic News</span><span class="sn">22</span></a><a class="spine t-cond face" style="--bg:#222222;--fg:#F3EFE6;--h:176px;--w:124px" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener" data-n="Anthropic Engineering" data-d="工程深度文章" data-k="官方一手"><span class="fc"><span class="fk">官方一手</span><span class="ft">Anthropic Engineering</span><span class="fd">工程深度文章</span></span></a><div class="spine t-heavy " style="--bg:#D6D4CE;--fg:#111111;--h:197px;--w:59px" data-n="财报与监管文件" data-d="Tesla 等公司的一手披露" data-k="官方一手"><span class="st">财报与监管文件</span><span class="sn">24</span></div></div><div class="baylab"><span>Primary</span><span>官方一手 · 5</span></div></div></div>
     <div class="shelfcap" id="cap" aria-live="polite"><span class="cn">24 本书，一手长文、播客与官方渠道</span><span class="cd">悬停书脊查看，点击打开</span></div>
-    <div class="herofoot cap"><span>Scroll to explore</span><span id="counter">01 — 03</span></div>
+    <div class="herofoot cap"><span>Scroll to explore</span><span id="counter">01 — 04</span></div>
   </div>
 
-  <section class="s" id="builders" data-idx="02">
+  <section class="s" id="daily" data-idx="02">
     <div class="shead">
-      <div><div class="cap" style="color:var(--mute)">02 — Builders on X</div><h2>43 Builders</h2></div>
+      <div><div class="cap" style="color:var(--mute)">02 — Today's Issue</div><h2>Frontier Daily</h2></div>
+      <span class="cap" style="color:var(--mute)">每天 07:41 出刊 · 点日历翻阅往期</span>
+    </div>
+    <div class="dwrap">
+      <aside class="dcal">
+        <div class="mhead"><div class="mtitle" id="mtitle">—</div><div class="mnav"><button type="button" id="prev" aria-label="上个月">‹</button><button type="button" id="next" aria-label="下个月">›</button></div></div>
+        <div class="dow cap"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+        <div class="days" id="days"></div>
+        <p class="dleg">彩色书脊是出过刊的日子，点一下翻到那一期。</p>
+        <div class="recent" id="recent"></div>
+      </aside>
+      <div class="dmain" id="dmain"><div class="dstate"><b>Loading</b>正在取出这一期</div></div>
+    </div>
+  </section>
+
+  <section class="s" id="builders" data-idx="03">
+    <div class="shead">
+      <div><div class="cap" style="color:var(--mute)">03 — Builders on X</div><h2>43 Builders</h2></div>
       <div class="modes" role="group" aria-label="展示方式"><button type="button" class="pill" data-m="ring" aria-pressed="true">Ring</button><button type="button" class="pill" data-m="grid" aria-pressed="false">Grid</button><button type="button" class="pill" data-m="list" aria-pressed="false">Index</button></div>
     </div>
     <div class="ringwrap" id="v-ring">
@@ -199,8 +287,8 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
     <div class="legend cap"><span>26 daily via follow-builders</span><span>Pending = 接入中</span></div>
   </section>
 
-  <section class="s" id="rules" data-idx="03">
-    <div class="shead"><div><div class="cap" style="color:var(--mute)">03 — House Rules</div><h2>Closer to source</h2></div><span class="cap" style="color:var(--mute)">越靠近源头，权重越高</span></div>
+  <section class="s" id="rules" data-idx="04">
+    <div class="shead"><div><div class="cap" style="color:var(--mute)">04 — House Rules</div><h2>Closer to source</h2></div><span class="cap" style="color:var(--mute)">越靠近源头，权重越高</span></div>
     <ol class="rules">
       <li><span class="rn">01</span><div class="rbody"><div class="rbar" style="--c:var(--orange);--wd:100%"></div><span class="rt"><span class="zh">一手经验分享</span></span><span class="rd">builder 本人的帖子、博客与访谈，写自己做了什么、踩了什么坑。</span></div></li>
       <li><span class="rn">02</span><div class="rbody"><div class="rbar" style="--c:var(--cobalt);--wd:62%"></div><span class="rt"><span class="zh">官方一手发布</span></span><span class="rd">模型与产品发布、收购、研究、财报与监管文件。</span></div></li>
@@ -252,13 +340,72 @@ footer.pf a{text-decoration:underline;text-underline-offset:3px}
   var counter=document.getElementById('counter'), navs=document.querySelectorAll('.bar nav .pill');
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){
-      var idx=e.target.getAttribute('data-idx'); counter.textContent=idx+' — 03';
+      var idx=e.target.getAttribute('data-idx'); counter.textContent=idx+' — 04';
       var key=e.target.id==='shelf-top'?'top':e.target.id;
       navs.forEach(function(a){a.classList.toggle('on',a.getAttribute('data-s')===key)});
     }})},{rootMargin:'-40% 0px -55% 0px'});
     document.querySelectorAll('[data-idx]').forEach(function(s){io.observe(s)});
   }
 })();
+</script>
+<script>
+(function(){
+  var PAL=[["#E8642C","#1B120D"],["#2F55B5","#fff"],["#F2A7C3","#1B120D"],["#1F2A55","#F3EFE6"],["#E9B23A","#2A1D16"],["#D9373B","#FFF3EA"],["#2E5A3F","#F1EBDD"],["#C9A6E0","#1B120D"],["#3E1E22","#E9B23A"]];
+  var SEC={x:["#E8642C","#1B120D"],pod:["#2F55B5","#fff"],industry:["#2E5A3F","#F1EBDD"]};
+  var WK=["SUN","MON","TUE","WED","THU","FRI","SAT"], PREVIEW=2;
+  var index=[],dates={},view=null,cur=null,full=false,data=null;
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function pal(ds){var n=0;for(var i=0;i<ds.length;i++)n+=ds.charCodeAt(i)*(i+1);return PAL[n%PAL.length]}
+  function today(){return new Date(Date.now()+8*3600e3).toISOString().slice(0,10)}
+  function parse(ds){var p=ds.split('-');return new Date(Date.UTC(+p[0],+p[1]-1,+p[2]))}
+  function md(ds){var d=parse(ds);return (d.getUTCMonth()+1)+'.'+String(d.getUTCDate()).padStart(2,'0')}
+  function safe(u){return /^https?:\/\//.test(u||'')?u:null}
+  function state(t,s){var d=el('div','dstate');d.append(el('b',null,t),document.createTextNode(s));document.getElementById('dmain').replaceChildren(d)}
+  function cal(){
+    var y=view.y,m=view.m,first=new Date(Date.UTC(y,m,1)),n=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+    document.getElementById('mtitle').replaceChildren(document.createTextNode(String(m+1).padStart(2,'0')),el('small',null,String(y)));
+    var box=document.getElementById('days');box.replaceChildren();var lead=(first.getUTCDay()+6)%7,td=today();
+    for(var i=0;i<lead;i++)box.append(el('span','day blank'));
+    for(var d=1;d<=n;d++){(function(ds){var has=!!dates[ds],c=el(has?'button':'span','day'+(has?' has':'')+(ds===td?' today':'')+(cur===ds?' sel':''));c.append(el('span',null,String(+ds.slice(8))));
+      if(has){var p=pal(ds);c.style.setProperty('--c',p[0]);c.style.setProperty('--t',p[1]);c.type='button';c.setAttribute('aria-label',ds+' 早报');c.append(el('i'));c.addEventListener('click',function(){go(ds,true)})}
+      box.append(c)})(y+'-'+String(m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'))}
+    var ms=index.map(function(x){return x.date.slice(0,7)}),k=y+'-'+String(m+1).padStart(2,'0');
+    document.getElementById('prev').disabled=!ms.length||k<=ms[ms.length-1];document.getElementById('next').disabled=!ms.length||k>=ms[0];
+  }
+  function recent(){var r=document.getElementById('recent');r.replaceChildren();index.slice(0,6).forEach(function(x){var a=el('a',x.date===cur?'on':'');a.href='#'+x.date;var d=parse(x.date),dd=el('div','rd',md(x.date));dd.append(el('small',null,WK[d.getUTCDay()]));a.append(dd,el('div','rh',x.headline||''));a.addEventListener('click',function(e){e.preventDefault();go(x.date,true)});r.append(a)})}
+  function item(it,sid){var a=el('article','item'),p=SEC[sid]||PAL[0];a.style.setProperty('--c',p[0]);a.style.setProperty('--t',p[1]);
+    var w=el('div','who');w.append(el('b',null,it.who||''));if(it.tag)w.append(el('span','tag',it.tag));a.append(w);
+    if(it.title)a.append(el('h4',null,it.title));if(it.summary)a.append(el('p',null,it.summary));
+    if(it.quote||it.quoteZh){var q=el('div','q');if(it.quote)q.append(el('span','en','“'+it.quote+'”'));if(it.quoteZh)q.append(el('span','zh',it.quoteZh));a.append(q)}
+    if(it.soWhat)a.append(el('p','sw',it.soWhat));var u=safe(it.url);if(u){var l=el('a','src',(it.sourceLabel||'原文')+' ↗');l.href=u;l.target='_blank';l.rel='noopener';a.append(l)}return a}
+  function render(){var d=data,m=document.getElementById('dmain');m.replaceChildren();var dt=parse(d.date);
+    var mast=el('div','mast'),big=el('div','dbig',md(d.date)),w=WK[dt.getUTCDay()];big.append(el('em',null,w[0]+w.slice(1).toLowerCase()));
+    var no=index.length-index.findIndex(function(x){return x.date===d.date}),ed=el('div','ed cap');ed.append(el('b',null,'No. '+String(no).padStart(3,'0')),document.createTextNode(d.date===index[0].date?'Latest issue':'Archive'));
+    mast.append(big,ed);m.append(mast,el('p','headline',d.headline||''));
+    if(d.themes&&d.themes.length){var ul=el('ol','themes');d.themes.forEach(function(t,i){var li=el('li');li.style.setProperty('--c',['#E8642C','#2F55B5','#2E5A3F'][i%3]);li.append(el('b',null,String(i+1).padStart(2,'0')),document.createTextNode(t));ul.append(li)});m.append(ul)}
+    if(full&&d.stats)m.append(el('p','dstats',d.stats));
+    var total=0,shown=0;
+    (d.sections||[]).forEach(function(s,i){var its=s.items||[];total+=its.length;var list=full?its:its.slice(0,PREVIEW);shown+=list.length;if(!list.length)return;
+      var p=SEC[s.id]||PAL[i],sec=el('div','dsec');sec.style.setProperty('--c',p[0]);
+      var sh=el('div','dsh');sh.append(el('span','no',String(i+1).padStart(2,'0')),el('h3',null,s.title),el('span','n cap',its.length+' items'));sec.append(sh);
+      var g=el('div','items');list.forEach(function(it){g.append(item(it,s.id))});if(list.length%2===1&&g.lastChild)g.lastChild.classList.add('wide');sec.append(g);m.append(sec)});
+    if(!full&&shown<total){var mo=el('div','more'),b=el('button',null,'展开全部');b.type='button';b.append(el('span',null,total+' 条'));b.addEventListener('click',function(){full=true;render()});mo.append(b);m.append(mo)}
+    if(d.question){var qs=el('div','qs');qs.append(el('div','cap','Question of the day · 今日一问'),el('h3',null,d.question));m.append(qs)}
+  }
+  function go(ds,scroll){cur=ds;full=false;var dt=parse(ds);view={y:dt.getUTCFullYear(),m:dt.getUTCMonth()};cal();recent();
+    if(scroll&&location.hash!=='#'+ds)history.replaceState(null,'','#'+ds);state('Loading','正在取出这一期');
+    fetch('briefs/'+ds+'.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(d){if(cur!==ds)return;data=d;render();if(scroll)document.getElementById('daily').scrollIntoView({block:'start'})}).catch(function(){state('Not found','这一期暂时取不到，刷新再试')})}
+  document.getElementById('prev').addEventListener('click',function(){view.m--;if(view.m<0){view.m=11;view.y--}cal()});
+  document.getElementById('next').addEventListener('click',function(){view.m++;if(view.m>11){view.m=0;view.y++}cal()});
+  window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(dates[h]&&h!==cur)go(h,true)});
+  fetch('briefs/index.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(list){
+    index=list.sort(function(a,b){return a.date<b.date?1:-1});index.forEach(function(x){dates[x.date]=1});
+    if(!index.length){var t=parse(today());view={y:t.getUTCFullYear(),m:t.getUTCMonth()};cal();state('Soon','第一期明早 07:41 出刊');return}
+    var t=document.getElementById('teaser');if(t){t.href='#daily';t.querySelector('.tl').textContent=md(index[0].date)+' · '+index[0].headline;t.hidden=false}
+    var h=location.hash.slice(1);go(dates[h]?h:index[0].date,!!dates[h]);
+  }).catch(function(){state('Offline','目录读取失败，刷新再试')});
+})();
+
 </script>
 
 </body>
